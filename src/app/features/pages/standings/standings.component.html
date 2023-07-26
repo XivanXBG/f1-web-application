@@ -1,0 +1,40 @@
+<div class="main">
+    <div class="year-selector">
+
+        <select [ngModel]="selectedYear" (ngModelChange)="onChange($event)" name="selYear" id="year">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+
+        </select>
+        <ng-container class="loading" *ngIf="!isLoaded">
+            Standings are loading!
+        </ng-container> 
+
+
+
+    </div>
+
+    <div class="standings-container">
+
+        <div class="standings-table">
+            <h2>Driver's</h2>
+            <ng-container *ngIf="isLoaded">
+                <ul *ngFor="let standingD of standingsD">
+                    <li>{{standingD.position}}. {{standingD.Driver.givenName}} {{standingD.Driver.familyName}} -
+                        {{standingD.Constructors[0].name}} - {{standingD.points}} points </li>
+                </ul>
+            </ng-container>
+
+        </div>
+
+        <div class="standings-table">
+            <h2>Constructor's</h2>
+            <ng-container *ngIf="isLoaded">
+                <ul *ngFor="let standingC of standingsC">
+                    <li>{{standingC.position}}. {{standingC.Constructor.name}} - {{standingC.points}} points
+                    </li>
+                </ul>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
