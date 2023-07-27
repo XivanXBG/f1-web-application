@@ -24,30 +24,36 @@ export class StandingsComponent implements OnInit {
   onChange(newValue: any): void {
     this.selectedYear = newValue;
 
-    this.isLoaded =false;
+    this.isLoaded = false;
     this.f1Service.getSeasonDriverStandings((this.selectedYear).toString()).subscribe(d => {
       this.standingsD = d['MRData']['StandingsTable'].StandingsLists[0].DriverStandings;
       console.log(this.standingsD);
-      
+
     });
     this.f1Service.getSeasonConstructorStandings((this.selectedYear).toString()).subscribe(d => {
       this.standingsC = d['MRData']['StandingsTable'].StandingsLists[0].ConstructorStandings;
       console.log(this.standingsC);
-      
+
     });
 
-    setTimeout(()=>{
-     
-      this.isLoaded=true
+    setTimeout(() => {
+
+      this.isLoaded = true
       this.cdr.detectChanges();
-    },3500)
-    
-  
-   
+    }, 3500)
+
+
+
 
 
   }
   ngOnInit(): void {
+    setTimeout(() => {
+
+      this.isLoaded = true
+      this.cdr.detectChanges();
+    }, 1000)
+
     this.f1Service.getSeasonDriverStandings((this.selectedYear).toString()).subscribe(d => {
       this.standingsD = d['MRData']['StandingsTable'].StandingsLists[0].DriverStandings;
       this.isLoaded = true;

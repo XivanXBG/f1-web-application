@@ -1,1 +1,12 @@
-<p>schedule works!</p>
+<div class="header">
+    <h1>F1 Race Schedule</h1>
+
+    <p>Check out the schedule for upcoming races.</p>
+    <app-race-countdown class="scheduleCD"></app-race-countdown>
+    <div class="cards">
+        <div class="cards-container">
+            <app-schedule-card *ngFor="let round of schedule" [round]="round"></app-schedule-card>
+        </div>
+    </div>
+
+</div>

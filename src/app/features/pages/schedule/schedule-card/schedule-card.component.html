@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="top-section">
+        <img src="https://p1.hiclipart.com/preview/283/498/362/car-formula-1-auto-racing-formula-one-car-formula-one-racing-silhouette-sports-formula-racing-png-clipart.jpg"
+            alt="Small Image">
+        <div class="name-date">
+            <div class="name">{{round.round}} round</div>
+            <div class="date">{{round.date}}</div>
+        </div>
+    </div>
+    <div class="middle-section">
+        <h3><strong>{{round.raceName}}</strong></h3>
+        <p>{{round.Circuit.circuitName }}</p>
+    </div>
+    <div class="bottom-section">
+        <ng-container *ngIf="true; else imageSection">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </ng-container>
+        <ng-template #imageSection>
+            <img src="./../../../../../assets/profile png.png" alt="Image">
+        </ng-template>
+    </div>
+</div>

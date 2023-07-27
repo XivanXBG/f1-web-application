@@ -5,9 +5,9 @@
             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
 
         </select>
-        <ng-container class="loading" *ngIf="!isLoaded">
+        <span class="loading" *ngIf="!isLoaded">
             Standings are loading!
-        </ng-container> 
+        </span> 
 
 
 
