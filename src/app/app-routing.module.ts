@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { StandingsComponent } from './features/pages/standings/standings.component';
 import { ScheduleComponent } from './features/pages/schedule/schedule.component';
+import { CircuitDetailsComponent } from './features/pages/circuits/circuit-details.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: "circuits",
-    component:ScheduleComponent
+    component:CircuitDetailsComponent
   }
 ];
 
