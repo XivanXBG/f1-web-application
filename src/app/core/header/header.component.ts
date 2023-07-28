@@ -6,12 +6,6 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeaderComponent {
   isLogged: boolean = true;
-
-  isDropdownOpen = false;
-
-
-
-
 }
 
 

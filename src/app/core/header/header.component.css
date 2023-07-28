@@ -1,60 +1,112 @@
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 20px;
-  color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
 }
 
 .logo img {
-  max-height: 50px;
+    max-height: 50px;
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin-left: -200px ;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin-left: -200px;
 }
 
 .nav-links li {
-  position: relative;
-  
+    position: relative;
 }
 
 .nav-links li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: x-large;
+    text-decoration: none;
+    color: #fff;
+    font-size: x-large;
 }
+
 .login-register a,
 .profile-logout a {
-  text-decoration: none;
-  color: #fff;
-  margin-left: 20px;
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20px;
 }
 
 .profile-logout img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .profile-logout {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
+.profile-logout a.logout {
+    background-color: #dc3545;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo img {
+    width: 250px;
+    /* Adjust the width of the logo as needed */
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 15px;
+    /* Add some space between the list items (optional) */
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+    /* Remove margin from the last list item (optional) */
+}
+
+.login-register,
+.profile-logout {
+    display: flex;
+    align-items: center;
+}
+
+.login-register a,
 .profile-logout a {
-  background-color: #dc3545;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+    margin-left: 15px;
+    /* Add some space between the links (optional) */
+}
+
+.profile-logout img {
+    width: 40px;
+    /* Adjust the width of the profile photo as needed */
 }

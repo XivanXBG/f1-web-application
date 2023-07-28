@@ -1,0 +1,84 @@
+<div class="register-container">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">Register</h4>
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+                                <div *ngIf="registerForm.get('name').invalid && (registerForm.get('name').dirty || registerForm.get('name').touched)" class="error-text">
+                                    <small class="text-danger">Name is required.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+                                <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)" class="error-text">
+                                    <small class="text-danger">Email is required and must be a valid email address.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+                                <div *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)" class="error-text">
+                                    <small class="text-danger">Password is required and must be at least 6 characters long.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password">
+                                <div *ngIf="registerForm.get('confirmPassword').invalid && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)" class="error-text">
+                                    <small class="text-danger">Password confirmation is required and must match the password.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="favoriteDriver" class="form-label">Favorite Driver</label>
+                                <select class="form-control" id="favoriteDriver" formControlName="favoriteDriver">
+                    <option value="" disabled>Select your favorite driver</option>
+                    <option value="driver1">Driver 1</option>
+                    <option value="driver2">Driver 2</option>
+                    <!-- Add more driver options as needed -->
+                  </select>
+                                <div *ngIf="registerForm.get('favoriteDriver').invalid && (registerForm.get('favoriteDriver').dirty || registerForm.get('favoriteDriver').touched)" class="error-text">
+                                    <small class="text-danger">Favorite Driver is required.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="favoriteConstructor" class="form-label">Favorite Constructor</label>
+                                <select class="form-control" id="favoriteConstructor" formControlName="favoriteConstructor">
+                    <option value="" disabled>Select your favorite constructor</option>
+                    <option value="constructor1">Constructor 1</option>
+                    <option value="constructor2">Constructor 2</option>
+                    <!-- Add more constructor options as needed -->
+                  </select>
+                                <div *ngIf="registerForm.get('favoriteConstructor').invalid && (registerForm.get('favoriteConstructor').dirty || registerForm.get('favoriteConstructor').touched)" class="error-text">
+                                    <small class="text-danger">Favorite Constructor is required.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
+                                <select class="form-control" id="favoriteCircuit" formControlName="favoriteCircuit">
+                    <option value="" disabled>Select your favorite circuit (optional)</option>
+                    <option value="circuit1">Circuit 1</option>
+                    <option value="circuit2">Circuit 2</option>
+                    <!-- Add more circuit options as needed -->
+                  </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <p class="text-center">Already registered? <a routerLink="/login" href="">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>

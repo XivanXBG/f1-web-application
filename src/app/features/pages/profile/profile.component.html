@@ -1,0 +1,55 @@
+<div class="profile-view" *ngIf="!isEditMode">
+    <div class="profile-picture">
+        <img src="./../../../../assets/profile png.png" alt="Profile Photo">
+    </div>
+    <div class="profile-info">
+        <h2>{{ firstName }} {{ lastName }}</h2>
+        <p>Email: {{ email }}</p>
+        <p>Favorite Driver: {{ favoriteDriver }}</p>
+        <p>Favorite Constructor: {{ favoriteConstructor }}</p>
+        <p>Favorite Circuit: {{ favoriteCircuit }}</p>
+    </div>
+
+    <div class="editBtn">
+        <button class="editBtn" (click)="toggleEditMode()">Edit Profile</button>
+    </div>
+
+
+</div>
+
+<div *ngIf="isEditMode" class="edit-profile-view">
+    <div *ngIf="isEditMode" class="edit-profile-view">
+        <form (ngSubmit)="saveProfile()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" [(ngModel)]="email">
+            </div>
+            <div class="form-group">
+                <label for="favoriteDriver">Favorite Driver</label>
+                <input type="text" id="favoriteDriver" name="favoriteDriver" [(ngModel)]="favoriteDriver">
+            </div>
+            <div class="form-group">
+                <label for="favoriteConstructor">Favorite Constructor</label>
+                <input type="text" id="favoriteConstructor" name="favoriteConstructor" [(ngModel)]="favoriteConstructor">
+            </div>
+            <div class="form-group">
+                <label for="favoriteCircuit">Favorite Circuit</label>
+                <input type="text" id="favoriteCircuit" name="favoriteCircuit" [(ngModel)]="favoriteCircuit">
+            </div>
+
+            <div class="edit-buttons">
+                <button type="submit">Save</button>
+                <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>

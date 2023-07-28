@@ -1,0 +1,13 @@
+/* Apply CSS flexbox layout to center the form vertically and horizontally */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Set the height of the container to fill the available space */
+    height: calc(100vh - 100px);
+    /* Subtract the height of header and footer */
+    /* Add top and bottom margins */
+    margin: 20px 0;
+}
