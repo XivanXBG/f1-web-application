@@ -7,6 +7,7 @@ import { CircuitDetailsComponent } from './features/pages/circuits/circuit-detai
 import { LoginComponent } from './features/pages/login/login.component';
 import { RegisterComponent } from './features/pages/register/register.component';
 import { ProfileComponent } from './features/pages/profile/profile.component';
+import { AuthGuard } from './core/guards/guard.guard';
 
 const routes: Routes = [
   {
@@ -35,9 +36,11 @@ const routes: Routes = [
     path: "register",
     component: RegisterComponent
   },
+  
   {
     path: "profile",
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

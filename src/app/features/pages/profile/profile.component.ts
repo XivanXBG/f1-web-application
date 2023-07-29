@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { IUser } from '../../../core/interfaces/user'; // Replace 'path-to-your' with the actual path
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,15 +12,20 @@ import { IUser } from '../../../core/interfaces/user'; // Replace 'path-to-your'
 export class ProfileComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   isEditMode = false;
-  user: IUser;
+  user: object;
 
   ngOnInit(): void {
     this.afAuth.authState.subscribe(user => {
-      console.log(user);
+
+      const data = this.authService.getUserInfo(user.uid).then((res) => {
+        this.user = res
+
+      });
 
     })
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { IUser } from 'src/app/core/interfaces/user';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, this.passwordConfirmationValidator]],
+      confirmPassword: ['', [Validators.required,this.passwordConfirmationValidator]],
       favoriteDriver: [''],
       favoriteConstructor: [''],
       favoriteCircuit: ['']
@@ -28,12 +28,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.errorMessage = null; // Clear previous error message
-    const email = this.registerForm.get('email')?.value;
-    const password = this.registerForm.get('password')?.value;
   
-    this.authService.SignUp(email, password)
+    const userData: IUser = {
+      email: this.registerForm.get('email')?.value,
+      name: this.registerForm.get('name')?.value,
+      favoriteConstructor: this.registerForm.get('favoriteConstructor')?.value,
+      favoriteDriver: this.registerForm.get('favoriteDriver')?.value,
+      favoriteCircuit: this.registerForm.get('favoriteCircuit')?.value,
+    };
+  
+    this.authService.SignUp(userData, this.registerForm.get('password').value)
       .then(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
       .catch((error) => {
         // Handle Sign Up errors here
@@ -41,6 +47,7 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error; // Display error message to the user
       });
   }
+  
   passwordConfirmationValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
@@ -51,4 +58,5 @@ export class RegisterComponent implements OnInit {
 
     return null;
 };
+
 }

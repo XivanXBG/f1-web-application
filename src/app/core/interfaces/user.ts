@@ -1,5 +1,11 @@
 export interface IUser {
-
-    email: string,
-
-}
+    uid?: string;
+    email: string;
+    name: string;
+    favoriteDriver: string;
+    favoriteConstructor: string;
+    favoriteCircuit: string;
+ 
+    // Add more properties as needed
+  }
+  

@@ -1,12 +1,13 @@
 // auth.service.ts
 
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject, Observable } from "rxjs";
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,11 @@ export class AuthService {
     });
   }
 
-  SignUp(email: string, password: string): Promise<void | string> {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
+  SignUp(userData: IUser, password: string): Promise<void | string> {
+    return this.afAuth
+      .createUserWithEmailAndPassword(userData.email, password)
       .then((result) => {
-        // Additional user data can be stored in Firestore
-        this.SetUserData(result.user);
+        this.SetUserData(result.user, userData);
         // ... other code ...
       })
       .catch((error) => {
@@ -64,7 +65,7 @@ export class AuthService {
         return Promise.reject(errorMessage); // Reject the promise with the error message
       });
   }
-  
+
 
   SignIn(email: string, password: string): Promise<void | string> {
     return this.afAuth.signInWithEmailAndPassword(email, password)
@@ -90,19 +91,34 @@ export class AuthService {
         return Promise.reject(errorMessage); // Reject the promise with the error message
       });
   }
-  
 
-  private SetUserData(user: firebase.User) {
+
+  private SetUserData(user: firebase.User, userData: IUser) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc<IUser>(`users/${user.uid}`);
 
-    // Set additional user data in Firestore if needed
-    const customUserData: IUser = {
-      email: user.email!,
-
-      // Add other user properties here as needed
-    };
+    const { email, name, favoriteDriver, favoriteConstructor, favoriteCircuit } = userData;
+    const customUserData: IUser = { uid: user.uid, email, name, favoriteDriver, favoriteConstructor, favoriteCircuit };
 
     return userRef.set(customUserData, { merge: true });
+  }
+  async getUserInfo(userId: string) {
+    try {
+      const firestore = firebase.firestore();
+
+      const userRef = firestore.collection('users').doc(userId);
+      const doc = await userRef.get();
+      if (doc.exists) {
+        const userData = doc.data();
+        console.log('User data:', userData);
+        return userData;
+      } else {
+        console.log('User not found');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error getting user:', error);
+      return null;
+    }
   }
 
   SignOut() {
@@ -114,6 +130,6 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false;
+    return user !== null
   }
 }

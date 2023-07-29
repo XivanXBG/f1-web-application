@@ -1,13 +1,13 @@
-<!-- <div class="profile-view" *ngIf="!isEditMode">
+<div class="profile-view" *ngIf="!isEditMode">
     <div class="profile-picture">
         <img src="./../../../../assets/profile png.png" alt="Profile Photo">
     </div>
-    <div class="profile-info">
-        <h2>{{ firstName }} {{ lastName }}</h2>
-        <p>Email: {{ email }}</p>
-        <p>Favorite Driver: {{ favoriteDriver }}</p>
-        <p>Favorite Constructor: {{ favoriteConstructor }}</p>
-        <p>Favorite Circuit: {{ favoriteCircuit }}</p>
+    <div *ngIf="user" class="profile-info">
+        <h2>{{user.name}}</h2>
+        <p>Email: {{ user.email }}</p>
+        <p>Favorite Driver: {{ user.favoriteDriver }}</p>
+        <p>Favorite Constructor: {{ user.favoriteConstructor }}</p>
+        <p>Favorite Circuit: {{ user.favoriteCircuit }}</p>
     </div>
 
     <div class="editBtn">
@@ -52,4 +52,4 @@
 
         </form>
     </div>
-</div> -->
+</div>

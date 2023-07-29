@@ -9,9 +9,9 @@
                     <div class="card-body">
                         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Display name</label>
                                 <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
-                                <div *ngIf="registerForm.get('name').invalid && (registerForm.get('name').dirty || registerForm.get('name').touched)" class="error-text">
+                                <div *ngIf="registerForm?.get('name').invalid && (registerForm?.get('name').dirty || registerForm.get('name').touched)" class="error-text">
                                     <small class="text-danger">Name is required.</small>
                                 </div>
                             </div>
