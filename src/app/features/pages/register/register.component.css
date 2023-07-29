@@ -1,0 +1,12 @@
+.error-text {
+    margin-top: 10px;
+}
+
+
+/* Style for the disabled submit button */
+
+button.btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    align-items: center;
+}

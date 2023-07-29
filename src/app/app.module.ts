@@ -6,6 +6,12 @@ import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { FeaturesModule } from './features/features.module';
+import { AngularFireModule} from "@angular/fire/compat";
+import { AngularFireAuthModule} from "@angular/fire/compat/auth"
+import { AngularFireStorageModule} from "@angular/fire/compat/storage"
+import { AngularFireDatabaseModule} from "@angular/fire/compat/database"
+import { AngularFirestoreModule} from "@angular/fire/compat/firestore"
+import { environmnet } from 'src/environments/environment';
 
 
 
@@ -18,6 +24,12 @@ import { FeaturesModule } from './features/features.module';
     AppRoutingModule,
     CoreModule,
     FeaturesModule,
+    AngularFireModule.initializeApp(environmnet.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule
+  
 
   ],
   providers: [],

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { IUser } from '../../../core/interfaces/user'; // Replace 'path-to-your' with the actual path
 
 @Component({
   selector: 'app-profile',
@@ -6,17 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  isEditMode = false;
-  firstName = 'John';
-  lastName = 'Doe';
-  email = 'john.doe@example.com';
-  favoriteDriver = 'Lewis Hamilton';
-  favoriteConstructor = 'Mercedes';
-  favoriteCircuit = 'Monaco Grand Prix';
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) { }
 
-  constructor() { }
+  isEditMode = false;
+  user: IUser;
 
   ngOnInit(): void {
+    this.afAuth.authState.subscribe(user => {
+      console.log(user);
+
+    })
   }
 
   toggleEditMode(): void {

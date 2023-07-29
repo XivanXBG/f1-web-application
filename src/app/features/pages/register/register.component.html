@@ -44,9 +44,7 @@
                     <option value="driver2">Driver 2</option>
                     <!-- Add more driver options as needed -->
                   </select>
-                                <div *ngIf="registerForm.get('favoriteDriver').invalid && (registerForm.get('favoriteDriver').dirty || registerForm.get('favoriteDriver').touched)" class="error-text">
-                                    <small class="text-danger">Favorite Driver is required.</small>
-                                </div>
+
                             </div>
                             <div class="mb-3">
                                 <label for="favoriteConstructor" class="form-label">Favorite Constructor</label>
@@ -56,9 +54,7 @@
                     <option value="constructor2">Constructor 2</option>
                     <!-- Add more constructor options as needed -->
                   </select>
-                                <div *ngIf="registerForm.get('favoriteConstructor').invalid && (registerForm.get('favoriteConstructor').dirty || registerForm.get('favoriteConstructor').touched)" class="error-text">
-                                    <small class="text-danger">Favorite Constructor is required.</small>
-                                </div>
+
                             </div>
                             <div class="mb-3">
                                 <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
@@ -69,7 +65,14 @@
                     <!-- Add more circuit options as needed -->
                   </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <div *ngIf="errorMessage" class="error-text">
+                                <small class="text-danger">{{ errorMessage }}</small>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
