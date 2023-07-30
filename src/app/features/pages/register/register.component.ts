@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { IUser } from 'src/app/core/interfaces/user';
 import { Router } from '@angular/router';
@@ -19,16 +19,16 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required,this.passwordConfirmationValidator]],
+      confirmPassword: ['', Validators.required], // Remove the custom validator here
       favoriteDriver: [''],
       favoriteConstructor: [''],
       favoriteCircuit: ['']
-    });
+    }, { validator: this.passwordConfirmationValidator }); // Add the custom validator here
   }
 
   onSubmit(): void {
     this.errorMessage = null; // Clear previous error message
-  
+
     const userData: IUser = {
       email: this.registerForm.get('email')?.value,
       name: this.registerForm.get('name')?.value,
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       favoriteDriver: this.registerForm.get('favoriteDriver')?.value,
       favoriteCircuit: this.registerForm.get('favoriteCircuit')?.value,
     };
-  
+
     this.authService.SignUp(userData, this.registerForm.get('password').value)
       .then(() => {
         this.router.navigate(['/']);
@@ -47,16 +47,17 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = error; // Display error message to the user
       });
   }
-  
+
   passwordConfirmationValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
 
     if (passwordControl && confirmPasswordControl && passwordControl.value !== confirmPasswordControl.value) {
-        return { confirmPasswordMismatch: true };
+      confirmPasswordControl.setErrors({ confirmPasswordMismatch: true });
+      return { confirmPasswordMismatch: true };
+    } else {
+      confirmPasswordControl.setErrors(null);
+      return null;
     }
-
-    return null;
-};
-
+  };
 }

@@ -8,6 +8,10 @@ import { LoginComponent } from './features/pages/login/login.component';
 import { RegisterComponent } from './features/pages/register/register.component';
 import { ProfileComponent } from './features/pages/profile/profile.component';
 import { AuthGuard } from './core/guards/guard.guard';
+import { ForgotPasswordComponent } from './features/pages/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './features/pages/verify-email/verify-email.component';
+import { AuthPublicGuard } from './core/guards/public-guard.guard';
+import { NotFoundComponent } from './features/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -29,19 +33,25 @@ const routes: Routes = [
   ,
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthPublicGuard]
   }
   ,
   {
     path: "register",
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [AuthPublicGuard]
   },
   
   {
     path: "profile",
     component: ProfileComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthPublicGuard] },
+  { path: 'verify-email-address', component: VerifyEmailComponent,canActivate: [AuthGuard] },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

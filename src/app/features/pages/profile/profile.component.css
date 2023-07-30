@@ -1,10 +1,23 @@
-/* Profile View */
+/* Common styles for both View Mode and Edit Mode */
 
-.profile-view {
+.profile-view,
+.edit-profile-view {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    /* Adjust height to fill the whole page except header and footer */
+    background-color: #f1f1f1;
+    /* Set a background color to fill the view */
+    padding: 20px;
+    /* Add padding to space the content */
+    font-size: 20px;
+    /* Increase the font size */
 }
+
+
+/* Profile View specific styles */
 
 .profile-picture img {
     width: 150px;
@@ -12,8 +25,8 @@
     border-radius: 50%;
     margin-bottom: 20px;
     border: 4px solid #FF6F00;
-    margin-top: 30px;
     /* Dark Orange border */
+    margin-top: 30px;
 }
 
 .profile-info {
@@ -29,141 +42,47 @@
 }
 
 .profile-info p {
-    font-size: 16px;
+    font-size: 18px;
+    /* Increase font size for profile details */
     margin-bottom: 5px;
 }
 
 
-/* Edit Profile View */
-
-.edit-profile-view {
-    text-align: center;
-}
+/* Edit Profile View specific styles */
 
 .edit-profile-view form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    /* Full width form */
 }
 
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 label {
-    font-size: 16px;
+    font-size: 18px;
+    /* Increase font size for labels */
     font-weight: bold;
     color: #FF6F00;
+    margin-right: 30px;
     /* Dark Orange */
 }
 
-input {
+input,
+select {
     width: 300px;
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 16px;
+    /* Increase font size for inputs and selects */
     border: 1px solid #FF6F00;
     /* Dark Orange border */
     border-radius: 5px;
-}
-
-.editBtn {
-    margin-bottom: 20px;
-    margin-top: -30px;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-button {
-    padding: 8px 20px;
-    font-size: 16px;
-    background-color: #FF6F00;
-    /* Dark Orange */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-button.cancel-btn {
-    background-color: #dc3545;
-}
-
-
-/* Profile View */
-
-.profile-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Add margin on top to center the profile picture */
-    flex-grow: 1;
-    /* Fill the available space */
-    background-color: #f1f1f1;
-    min-height: calc(100vh - 80px);
-    /* Adjust height to fill the whole page except header and footer */
-    /* Add 20px margins top and bottom */
-}
-
-.profile-view p {
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: large;
-}
-
-.edit-profile-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 100px);
-    /* Adjust height to fill the whole page except header and footer */
-    /* Add 20px margins top and bottom */
-    background-color: #f1f1f1;
-    /* Set a background color to fill the view */
-    padding: 20px;
-    /* Add padding to space the content */
-}
-
-
-/* Labels in Edit Mode */
-
-.edit-profile-view label {
-    margin-right: 10px;
-    /* Add margin to the right of the labels */
-}
-
-
-/* Remove default margin from ul */
-
-.edit-profile-view ul {
-    margin: 0;
-    padding: 0;
-    /* Remove padding for ul element */
-}
-
-
-/* Add spacing between list items */
-
-.edit-profile-view li {
-    margin-bottom: 10px;
-}
-
-
-/* Buttons in Edit Mode */
-
-.edit-buttons {
-    display: flex;
-    /* Arrange buttons horizontally */
-    justify-content: space-between;
-    /* Add space between buttons */
-    margin-top: 20px;
-    /* Add margin between buttons and form */
 }
 
 
@@ -176,41 +95,77 @@ button.cancel-btn {
     /* Add padding to separate the content from the line */
 }
 
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FF6F00;
+    /* Dark Orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button.cancel-btn {
+    background-color: #dc3545;
+}
+
+
+/* Hover styles for buttons */
+
+button:hover {
+    background-color: #FFA500;
+    /* Orange (a shade lighter on hover) */
+}
+
 .edit-buttons {
     display: flex;
     /* Arrange buttons horizontally */
     justify-content: space-between;
     /* Add space between buttons */
     margin-top: 20px;
-    /* Add margin between buttons and form */
+    gap: 30px;
 }
 
-
-/* Additional margin for profile info in View Mode */
-
-.profile-info:not(.edit-profile-view) .info-item {
-    margin-bottom: 10px;
-    /* Add margin between info items */
+.custom-dropdown {
+    position: relative;
 }
 
-.edit-buttons button {
-    margin-right: 10px;
-    /* Add margin to the right of each button */
-    padding: 8px 20px;
-    /* Add padding to the buttons */
-    background-color: darkorange;
-    /* Set the background color for the buttons */
-    color: white;
-    /* Set the text color for the buttons */
-    border: none;
-    /* Remove the button border */
-    border-radius: 5px;
-    /* Add border radius to the buttons */
+.dropdown {
+    position: relative;
+    display: inline-block;
     cursor: pointer;
-    /* Add cursor pointer on hover */
 }
 
-.edit-buttons button:hover {
-    background-color: orange;
-    /* Change the background color on hover */
+.selected-option {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.options div {
+    padding: 5px;
+}
+
+.options div:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown.open .options {
+    display: block;
 }

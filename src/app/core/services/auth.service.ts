@@ -13,7 +13,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private userData: any;
+   userData: any;
   private isLoggedInSubject: BehaviorSubject<boolean>; // Add a BehaviorSubject to track login status changes
   public isLoggedIn$: Observable<boolean>;
   constructor(
@@ -41,6 +41,7 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(userData.email, password)
       .then((result) => {
+        this.SendVerificationMail();
         this.SetUserData(result.user, userData);
         // ... other code ...
       })
@@ -97,10 +98,22 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc<IUser>(`users/${user.uid}`);
 
     const { email, name, favoriteDriver, favoriteConstructor, favoriteCircuit } = userData;
-    const customUserData: IUser = { uid: user.uid, email, name, favoriteDriver, favoriteConstructor, favoriteCircuit };
+    const customUserData: IUser = { uid: user.uid, email, name, favoriteDriver, favoriteConstructor, favoriteCircuit, emailVerified: user.emailVerified };
 
     return userRef.set(customUserData, { merge: true });
   }
+  SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email-address']);
+      });
+  }
+  // Reset Forggot password
+  ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth.sendPasswordResetEmail(passwordResetEmail);
+  }
+
   async getUserInfo(userId: string) {
     try {
       const firestore = firebase.firestore();

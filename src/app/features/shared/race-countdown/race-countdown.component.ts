@@ -13,7 +13,7 @@ export class RaceCountdownComponent implements OnInit {
 
   }
   schedule!: any[]
-  index: number = 11
+  index: number = 12
   raceStartDate!: Date;
   countdown!: string;
 
@@ -37,9 +37,12 @@ export class RaceCountdownComponent implements OnInit {
     const timeRemaining = this.raceStartDate.getTime() - currentTime.getTime();
 
     if (timeRemaining <= 0) {
-      this.countdown = "Race has started!"
+      setTimeout(()=>{
+        this.countdown = "Race has started!"
+      }, 10000000)
+      
       this.index += 1;
-      return
+   
     }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));

@@ -11,3 +11,42 @@
     /* Add top and bottom margins */
     margin: 20px 0;
 }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.error-text {
+    margin-top: 0.5rem;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 1rem;
+}

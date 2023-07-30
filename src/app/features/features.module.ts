@@ -11,6 +11,10 @@ import { CircuitDetailsComponent } from './pages/circuits/circuit-details.compon
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 
 
 
@@ -26,7 +30,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
     CircuitDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    VerifyEmailComponent,
+    ForgotPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
