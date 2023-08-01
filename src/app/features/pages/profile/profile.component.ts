@@ -22,8 +22,32 @@ export class ProfileComponent implements OnInit {
     private firestore: FirestoreService
   ) { }
 
+
+  favoriteDriver: string = ""; // Initialize favoriteDriver with an empty string
+  drivers: Array<string> = [
+    "Driver1",
+    "Driver2"
+  ]
+  constructors: Array<string> = [
+    "Constructor1",
+    "Constructor2"
+  ]
+  circuits: Array<string> = [
+    'Circuit1',
+    'Circuit2'
+  ]
   isEditMode = false;
   user: IUser;
+
+  ngOnInit(): void {
+    this.updateInfo(); // Fetch user info
+    this.favoriteDriver = this.user?.favoriteDriver || ""; // Set the default value
+  }
+
+  toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
+  }
+
   updateInfo() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -33,18 +57,11 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {
-    this.updateInfo()
-  }
-
-  toggleEditMode(): void {
-    this.isEditMode = !this.isEditMode;
-  }
 
   saveProfile(): void {
     this.toggleEditMode();
     this.updateUserData();
-    this.updateInfo()
+    this.updateInfo();
   }
 
   cancelEdit(): void {
@@ -53,7 +70,6 @@ export class ProfileComponent implements OnInit {
 
   updateUserData(): void {
     const formValues = this.form.value;
-   
 
     const userDataToUpdate = {
       name: formValues.firstName || this.user.name,
@@ -62,7 +78,6 @@ export class ProfileComponent implements OnInit {
       favoriteCircuit: formValues.favoriteCircuit || ""
       // Add other fields you want to update
     };
-
 
     // Update the user's data in Firestore using the Firestore service
     this.firestore.updateUserData(this.user.uid, userDataToUpdate)

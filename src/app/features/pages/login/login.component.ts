@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginError: string | null = null;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router:Router) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -20,12 +21,22 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  loginWithGoogle() {
+    this.authService.googleSingIn();
+  }
+  loginWithGitHub(){
+    this.authService.loginWithGitHub()
 
+  }
+  loginWithFacebook(){
+    this.authService.loginWithFacebook()
+
+  }
   onSubmit(): void {
     this.loginError = null; // Clear previous error message
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
-  
+
     this.authService.SignIn(email, password)
       .then(() => {
         this.router.navigate(['/'])
@@ -36,5 +47,5 @@ export class LoginComponent implements OnInit {
         this.loginError = error; // Display error message to the user
       });
   }
-  
+
 }

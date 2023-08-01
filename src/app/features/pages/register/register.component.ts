@@ -25,9 +25,20 @@ export class RegisterComponent implements OnInit {
       favoriteCircuit: ['']
     }, { validator: this.passwordConfirmationValidator }); // Add the custom validator here
   }
+  loginWithGoogle(){
+    this.authService.googleSingIn()
+  }
+  loginWithGitHub(){
+    this.authService.loginWithGitHub()
 
+  }
+  loginWithFacebook(){
+    this.authService.loginWithFacebook()
+
+  }
   onSubmit(): void {
     this.errorMessage = null; // Clear previous error message
+   
 
     const userData: IUser = {
       email: this.registerForm.get('email')?.value,

@@ -9,5 +9,6 @@ export const environmnet = {
         messagingSenderId: "1012041223562",
         appId: "1:1012041223562:web:c788d53454ecfdef384c73",
         measurementId: "G-06HCFFGQG1"
-      }
+      },
+      githubClientId: "405e127ba97669646665"
 }

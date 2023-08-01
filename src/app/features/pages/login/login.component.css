@@ -50,3 +50,9 @@
     text-align: center;
     margin-top: 1rem;
 }
+i {
+   padding: 15px;
+   border: #f8f9fa;
+   border-radius: 30px;
+   background-color: lightblue;
+}

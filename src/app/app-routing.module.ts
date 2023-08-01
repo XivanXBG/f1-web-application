@@ -51,7 +51,9 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthPublicGuard] },
   { path: 'verify-email-address', component: VerifyEmailComponent,canActivate: [AuthGuard] },
   { path: 'not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: '/not-found' }
+  { path: 'auth-callback', component: LandingPageComponent },
+  { path: '**', redirectTo: '/not-found' },
+ 
 ];
 
 @NgModule({

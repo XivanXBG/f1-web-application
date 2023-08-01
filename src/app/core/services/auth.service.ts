@@ -7,13 +7,20 @@ import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject, Observable } from "rxjs";
-import { catchError, map } from 'rxjs/operators';
+import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "@angular/fire/auth"
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-   userData: any;
+  userData: any;
+  data: IUser = {
+    email: "",
+    name: '',
+    favoriteConstructor: '',
+    favoriteDriver: '',
+    favoriteCircuit: '',
+  };
   private isLoggedInSubject: BehaviorSubject<boolean>; // Add a BehaviorSubject to track login status changes
   public isLoggedIn$: Observable<boolean>;
   constructor(
@@ -37,6 +44,27 @@ export class AuthService {
     });
   }
 
+  googleSingIn() {
+    return this.afAuth.signInWithPopup(new GoogleAuthProvider).then((res) => {
+      this.data.email = res.user.email;
+      this.router.navigate(['/']);
+      this.SetUserData(res.user, this.data)
+    })
+  }
+  loginWithFacebook(){
+    return this.afAuth.signInWithPopup(new FacebookAuthProvider).then((res) => {
+      this.data.email = res.user.email;
+      this.router.navigate(['/']);
+      this.SetUserData(res.user, this.data)
+    })
+  }
+  loginWithGitHub(){
+    return this.afAuth.signInWithPopup(new GithubAuthProvider).then((res) => {
+      this.data.email = res.user.email;
+      this.router.navigate(['/']);
+      this.SetUserData(res.user, this.data)
+    })
+  }
   SignUp(userData: IUser, password: string): Promise<void | string> {
     return this.afAuth
       .createUserWithEmailAndPassword(userData.email, password)
@@ -94,7 +122,7 @@ export class AuthService {
   }
 
 
-  private SetUserData(user: firebase.User, userData: IUser) {
+  private SetUserData(user: firebase.User, userData?: IUser) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc<IUser>(`users/${user.uid}`);
 
     const { email, name, favoriteDriver, favoriteConstructor, favoriteCircuit } = userData;
