@@ -19,22 +19,25 @@
   background-size: cover;
   background-position: center;
   background-color: black;
-  opacity: 0.8;
+  opacity: 1;
 
   z-index: -1;
 }
 
 .content {
-  margin-top: 50px; /* Add some space between the top of the page and the content */
+  margin-top: 150px; /* Add some space between the top of the page and the content */
   background-color: #d6d7d8;
   border-radius: 20px;
   z-index: 11;
+  opacity: 0.5;
 }
 
 h1 {
   padding: 10px;
   font-size: 3rem;
   color: black;
+  opacity: 1;
+
 }
 
 .button-container {
@@ -53,8 +56,12 @@ button {
 
 .primary-button {
   background-color: #007bff;
+  opacity: 1;
+
 }
 
 .secondary-button {
   background-color: #6c757d;
+  opacity: 1;
+
 }

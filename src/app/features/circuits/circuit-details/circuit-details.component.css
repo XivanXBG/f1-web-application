@@ -1,0 +1,84 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../../../assets//f1.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.details-card {
+  position: relative;
+  width: 80%;
+  /* Adjust the width as needed */
+  height: 80%;
+  /* Adjust the height as needed */
+  border: 1px solid #ccc;
+  /* Add a border */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 10px solid red;
+  border-right: 10px solid red;
+  border-radius: 20%;
+  z-index: 2;
+  background-color: #bcbcbc;
+
+}
+
+
+
+.top-left {
+  position: absolute;
+  display: block;
+  top: 80px;
+  /* Adjust the top position as needed */
+  left: 150px;
+  /* Adjust the left position as needed */
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+  vertical-align:middle;
+  margin-top:150px
+}
+
+.left-section {
+  flex: 1;
+  align-items: center;
+}
+
+.circuit-image {
+  width: 100%;
+  height: auto;
+}
+
+.right-section {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.box {
+  border: 5px solid #5e5d5d;
+  padding: 10px;
+  border-radius: 10%;
+  background-color:aliceblue;
+}
+
+.box h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.box p {
+  margin: 0;
+}

@@ -1,0 +1,16 @@
+<div class="outer-container">
+    <div class="top-left circuit-badge">Round {{circuit.round}}</div> <!-- Add top-left round here -->
+    <div class="top-right circuit-badge">{{ hasRaceEnded(circuit) }}</div> <!-- The existing top-right round -->
+    <div class="circuit-card-2"  [class.hovered]="isHovered" (click)="redirectToDetailsPage(circuit.idFire)">
+      <div class="top-section">
+        <div class="circuit-image-wrapper">
+          <img src="../../../../../assets//F1-logo.png" alt="{{ circuit.raceName }}" class="circuit-small-image">
+        </div>
+        <h3 class="circuit-name">{{ circuit.raceName }}</h3>
+      </div>
+      <div class="bottom-section">
+        <img [src]="circuit.image" alt="{{ circuit.raceName }}" class="circuit-image">
+      </div>
+    </div>
+  </div>
+  

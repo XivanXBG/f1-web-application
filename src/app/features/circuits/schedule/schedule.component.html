@@ -5,7 +5,7 @@
     <app-race-countdown class="scheduleCD"></app-race-countdown>
     <div class="cards">
         <div class="cards-container">
-            <app-schedule-card *ngFor="let round of schedule" [round]="round"></app-schedule-card>
+            <app-schedule-card *ngFor="let circuit of f1Circuits$" [circuit]="circuit" ></app-schedule-card>
         </div>
     </div>
 

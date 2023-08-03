@@ -1,0 +1,122 @@
+.outer-container {
+    position: relative;
+    
+  }
+  
+  .rounds-container {
+    display: flex;
+    position: absolute;
+    top: -25px;
+    right: 10px;
+  }
+  
+  .circuit-badge {
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .circuit-card-2 {
+    background-color: aliceblue;
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: border 0.3s ease;
+    margin: 10px;
+  }
+  
+  .circuit-card-2.hovered {
+    border-width: 1px 0;
+    margin-top: -1px;
+    border-color: orange;
+  }
+  
+  .top-section {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+  }
+  
+  .circuit-image-wrapper {
+    flex: 1;
+    text-align: right;
+    padding-right: 8px;
+  }
+  
+  .circuit-small-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+  }
+  
+  .circuit-name {
+    flex: 4;
+    margin: 0;
+  }
+  
+  .bottom-section {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .circuit-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  
+  .top-right {
+    position: absolute;
+    top: -25px;
+    right: 10px;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    z-index: 1;
+  }
+  .circuit-badge.top-left {
+    position: absolute;
+    top: -25px;
+    left: 10px;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    z-index: 1;
+  }
+  
+  /* Style the top-right round */
+  .circuit-badge.top-right {
+    position: absolute;
+    top: -25px;
+    right: 0px; /* Adjust this value to properly center the round on the right */
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    z-index: 1;
+  }
+  
+  .circuit-card-2:hover {
+    transform: scale(1.05);
+    border: 2px solid orange;
+    cursor: pointer;
+  }
+  

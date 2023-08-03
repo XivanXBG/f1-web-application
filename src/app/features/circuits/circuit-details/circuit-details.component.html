@@ -1,0 +1,32 @@
+<div class="center-container">
+    
+    <div class="details-card">
+
+       
+        <div class="top-left">{{ circuit.circuitName }}</div>
+        <div class="content">
+            <div class="left-section">
+                <img [src]="circuit.image" alt="{{ circuit.raceName }}" class="circuit-image">
+            </div>
+            <div class="right-section">
+                <div class="box">
+                    <h4>First Grand Prix</h4>
+                    <p>{{ circuit.firstGP }}</p>
+                </div>
+                <div class="box">
+                    <h4>Number of Laps</h4>
+                    <p>{{ circuit.laps }}</p>
+                </div>
+                <div class="box">
+                    <h4>Circuit Length</h4>
+                    <p>{{ circuit.circuitLength }}</p>
+                </div>
+                <div class="box">
+                    <h4>Lap Record</h4>
+                    <p>{{ circuit.lapRecord }}</p>
+                    <p>Holder: {{ circuit.recordHolder }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

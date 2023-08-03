@@ -29,11 +29,8 @@ export class StandingsService implements OnInit {
   getSchedule(): Observable<any> {
     return this.http.get(`http://ergast.com/api/f1/current.json `)
   }
-  getCircuits(): any {
-    const firestoreUrl = 'https://firestore.googleapis.com/v1/projects/f1-web-a/databases/(default)/documents/circuits';
-    this.http.get<any[]>(firestoreUrl).subscribe((data) => {
-      return data
-    });
+  getDrivers(): any {
+    return this.http.get('http://ergast.com/api/f1/2023/drivers.json')
   }
 
   getCircuit(circuit: string): Observable<any> {

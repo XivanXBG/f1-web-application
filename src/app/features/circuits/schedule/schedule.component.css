@@ -1,7 +1,7 @@
 .header {
   text-align: center;
   padding: 20px;
-  background-color: aliceblue;
+  background-color: rgba(165, 169, 173, 0.568);
 
 }
 
@@ -36,9 +36,11 @@
   margin-right: auto;
   margin-bottom: 50px;
   margin-top: 50px;
+  
 }
 
 .cards {
   display: flex;
   justify-content: center;
+  
 }

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { StandingsComponent } from './features/pages/standings/standings.component';
-import { ScheduleComponent } from './features/pages/schedule/schedule.component';
-import { CircuitDetailsComponent } from './features/pages/circuits/circuit-details.component';
+import { ScheduleComponent } from './features/circuits/schedule/schedule.component';
+
 import { LoginComponent } from './features/pages/login/login.component';
 import { RegisterComponent } from './features/pages/register/register.component';
 import { ProfileComponent } from './features/pages/profile/profile.component';
@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './features/pages/forgot-password/forgot
 import { VerifyEmailComponent } from './features/pages/verify-email/verify-email.component';
 import { AuthPublicGuard } from './core/guards/public-guard.guard';
 import { NotFoundComponent } from './features/pages/not-found/not-found.component';
+import { CircuitDetailsComponent } from './features/circuits/circuit-details/circuit-details.component';
 
 const routes: Routes = [
   {
@@ -22,15 +23,16 @@ const routes: Routes = [
     path: "standings",
     component: StandingsComponent
   },
+  
   {
-    path: "schedule",
-    component: ScheduleComponent
+    path: 'schedule',
+    loadChildren: () => import('./features/circuits/circuits.module').then((m) => m.CircuitsModule),
   },
   {
-    path: "circuits",
-    component: CircuitDetailsComponent
-  }
-  ,
+    path: 'wiki',
+    loadChildren: () => import('./features/wiki/wiki.module').then((m) => m.WikiModule),
+  },
+
   {
     path: "login",
     component: LoginComponent,
@@ -42,18 +44,18 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [AuthPublicGuard]
   },
-  
+
   {
     path: "profile",
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthPublicGuard] },
-  { path: 'verify-email-address', component: VerifyEmailComponent,canActivate: [AuthGuard] },
+  { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [AuthGuard] },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'auth-callback', component: LandingPageComponent },
-  { path: '**', redirectTo: '/not-found' },
- 
+  // { path: '**', redirectTo: '/not-found' },
+
 ];
 
 @NgModule({

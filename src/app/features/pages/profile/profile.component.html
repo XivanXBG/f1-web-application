@@ -4,11 +4,11 @@
         <img src="./../../../../assets/profile png.png" alt="Profile Photo">
     </div>
     <div *ngIf="user" class="profile-info">
-        <h2>   {{ user.name }}</h2>
-        <p><b>Email:</b>   {{   user.email }}</p>
-        <p><b>Favorite Driver:</b>   {{ user.favoriteDriver }}</p>
-        <p><b>Favorite Constructor:</b>   {{ user.favoriteConstructor }}</p>
-        <p><b>Favorite Circuit:</b>   {{ user.favoriteCircuit }}</p>
+        <h2> {{ user.name }}</h2>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>Favorite Driver:</b> {{ user.favoriteDriver }}</p>
+        <p><b>Favorite Constructor:</b> {{ user.favoriteConstructor }}</p>
+        <p><b>Favorite Circuit:</b> {{ user.favoriteCircuit }}</p>
     </div>
 
     <div class="editBtn">
@@ -21,7 +21,7 @@
     <form #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input size="30px" placeholder="{{ user.name }}" type="text" id="firstName" name="firstName"
+            <input size="30px" placeholder="{{ user.name | async }}" type="text" id="firstName" name="firstName"
                 [(ngModel)]="firstName" required>
         </div>
 
@@ -31,7 +31,7 @@
                 <div class="small-text-centered">{{ user?.favoriteDriver }}</div>
             </div>
             <select name="favoriteDriver" id="favoriteDriver" class="form-control" [(ngModel)]="favoriteDriver">
-                <option *ngFor="let driver of drivers" [value]="driver">{{ driver }}</option>
+                <option *ngFor="let driver of drivers" [value]="driver">{{ driver |async }}</option>
             </select>
         </div>
 
@@ -42,14 +42,14 @@
             </div>
             <select name="favoriteConstructor" id="favoriteConstructor" class="form-control"
                 [(ngModel)]="favoriteConstructor">
-                <option *ngFor="let circuit of circuits" [value]="circuit">{{ circuit }}</option>
+                <option *ngFor="let circuit of circuits" [value]="circuit">{{ circuit |async }}</option>
             </select>
         </div>
 
         <div class="form-group">
             <div class="label-with-small-text">
                 <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
-                <div class="small-text-centered">{{ user?.favoriteCircuit }}</div>
+                <div class="small-text-centered">{{ user?.favoriteCircuit |async }}</div>
             </div>
             <select name="favoriteCircuit" id="favoriteCircuit" class="form-control" [(ngModel)]="favoriteCircuit">
                 <option *ngFor="let contructor of constructors" [value]="contructor">{{ contructor }}</option>

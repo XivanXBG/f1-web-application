@@ -12,18 +12,21 @@ import { AngularFireStorageModule} from "@angular/fire/compat/storage"
 import { AngularFireDatabaseModule} from "@angular/fire/compat/database"
 import { AngularFirestoreModule} from "@angular/fire/compat/firestore"
 import { environmnet } from 'src/environments/environment';
+import { CircuitsModule } from './features/circuits/circuits.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
     FeaturesModule,
+    CircuitsModule,
     AngularFireModule.initializeApp(environmnet.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
