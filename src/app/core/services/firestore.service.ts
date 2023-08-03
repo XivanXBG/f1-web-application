@@ -27,6 +27,11 @@ export class FirestoreService {
     return this.firestore.collection('circuits').doc(circuitId).valueChanges();
 
   }
+  getF1Drivers() {
+
+    return this.firestore.collection('drivers').valueChanges();
+
+  }
   // addCircuits(): void {
 
 
