@@ -21,6 +21,8 @@ export class CircuitDetailsComponent{
       this.circuit = circuit as ICurcuit
     });
 
+    setTimeout(()=>{},1000)
+
     
   }
   

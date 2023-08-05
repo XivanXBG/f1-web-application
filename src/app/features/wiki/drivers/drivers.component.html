@@ -1,22 +1,27 @@
-<div class="cards-container">
-    <div *ngFor="let driver of drivers" class="driver-card">
-      <div class="driver-image-container">
-        <!-- Replace 'driver.image' with the URL of the driver's image -->
-        <img [src]="driver.image" alt="Driver Image" class="driver-image">
-        <div class="driver-number-container">
-          <!-- Replace 'driver.number' with the driver's number -->
-          <span class="driver-number">{{ driver.number }}</span>
-        </div>
-      </div>
-      <h3 class="driver-name">{{ driver.name }}</h3>
-      <p class="driver-team">{{ driver.team }}</p>
-      <p class="driver-country"><b>Country:</b> {{ driver.country }}</p>
-      <div class="driver-info">
-        <p class="driver-dob">Date of Birth: {{ driver.dateOfBirth }}</p>
-        <p class="driver-pob">Place of Birth: {{ driver.placeOfBirth }}</p>
-      </div>
-      <p class="driver-wins">Wins: {{ driver.wins }}</p>
-      <p class="driver-podiums">Podiums: {{ driver.podiums }}</p>
+<div class="background">
+    <div class="titleD">
+        <h1 class="title">F1 Drivers</h1>
     </div>
-  </div>
-  
+    <div class="cards-container">
+
+        <div *ngFor="let driver of drivers" class="driver-card">
+            <div class="driver-image-container">
+                <!-- Replace 'driver.image' with the URL of the driver's image -->
+                <img [src]="driver.image" alt="Driver Image" class="driver-image">
+                <div class="driver-number-container">
+                    <!-- Replace 'driver.number' with the driver's number -->
+                    <span class="driver-number">{{ driver.number }}</span>
+                </div>
+            </div>
+            <h3 class="driver-name">{{ driver.name }}</h3>
+            <p class="driver-team">{{ driver.team }}</p>
+            <p class="driver-country"><b>Country:</b> {{ driver.country }}</p>
+            <div class="driver-info">
+                <p class="driver-dob">Date of Birth: {{ driver.dateOfBirth }}</p>
+                <p class="driver-pob">Place of Birth: {{ driver.placeOfBirth }}</p>
+            </div>
+            <p class="driver-wins">Wins: {{ driver.wins }}</p>
+            <p class="driver-podiums">Podiums: {{ driver.podiums }}</p>
+        </div>
+    </div>
+</div>

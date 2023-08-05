@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StandingsService } from 'src/app/core/services/standings.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { ICurcuit } from 'src/app/core/interfaces/circuit';
 
 @Component({
   selector: 'app-race-countdown',
@@ -9,40 +11,51 @@ import { Router } from '@angular/router';
 })
 export class RaceCountdownComponent implements OnInit {
 
-  constructor(private f1Service: StandingsService, private router:Router) {
+  constructor(private f1Service: StandingsService, private router: Router, private firestoreService: FirestoreService) {
 
   }
-  schedule!: any[]
-  index: number = 12
+  circuit!: ICurcuit;
+  index: string = "13";
+  idFire: string;
   raceStartDate!: Date;
   countdown!: string;
 
   ngOnInit(): void {
-    if (this.index > 23) {
-      this.index = 0;
+    if (+this.index > 23) {
+      this.index = "0";
     }
-    this.f1Service.getSchedule().subscribe(x => {
-      this.schedule = x['MRData']['RaceTable'].Races;
-      const nextRace = this.schedule[this.index];
-      this.raceStartDate = new Date(`${nextRace.date}T${nextRace.time}`);
-    });
+    this.fetchData()
+  }
 
-    setInterval(() => {
-      this.updateCountDown();
-    }, 1000)
+  fetchData() {
+    this.firestoreService.getRaceDetailsByRound(this.index).subscribe(raceDetails => {
+      raceDetails.map(docChange => {
+        const circuit = docChange.payload.doc.data();
+        this.idFire = docChange.payload.doc.id;
+        this.raceStartDate = new Date(`${circuit.date}T${circuit.time}`);
 
+      }
+      )
+      setInterval(() => {
+        this.updateCountDown();
+      }, 1000)
+    })
+
+  }
+  scheduleNextFetch() {
+    setTimeout(() => {
+      this.index += 1; // Increment the index for the next race
+      this.fetchData(); // Fetch race details for the next race
+    }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
   }
   updateCountDown() {
     const currentTime = new Date();
     const timeRemaining = this.raceStartDate.getTime() - currentTime.getTime();
 
     if (timeRemaining <= 0) {
-      setTimeout(()=>{
-        this.countdown = "Race has started!"
-      }, 10000000)
-      
-      this.index += 1;
-   
+
+      this.countdown = "Race has started!";
+      this.scheduleNextFetch();
     }
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -53,8 +66,11 @@ export class RaceCountdownComponent implements OnInit {
     this.countdown = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
   }
 
-  showRace(){
-    this.router.navigate(['/schedule'])
-  }
+  showRace() {
 
+    this.router.navigate(['/schedule']).then(() => {
+      this.router.navigate(['/schedule/details', this.idFire]);
+    });
+
+  }
 }

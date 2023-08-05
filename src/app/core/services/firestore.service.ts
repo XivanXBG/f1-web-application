@@ -22,6 +22,9 @@ export class FirestoreService {
     return this.f1CircuitsCollection.snapshotChanges();
 
   }
+  getRaceDetailsByRound(round: string): Observable<any[]> {
+    return this.firestore.collection('circuits', ref => ref.where('round', '==', round)).snapshotChanges();
+  }
   getF1CircuitDataById(circuitId: string) {
 
     return this.firestore.collection('circuits').doc(circuitId).valueChanges();
@@ -30,6 +33,11 @@ export class FirestoreService {
   getF1Drivers() {
 
     return this.firestore.collection('drivers').valueChanges();
+
+  }
+  getF1Constructors() {
+
+    return this.firestore.collection('constructors').valueChanges();
 
   }
   // addCircuits(): void {

@@ -25,28 +25,11 @@ export class ScheduleComponent implements OnInit {
       }
 
       );
-     
-
       this.f1Circuits$.sort((a, b) => a.round - b.round);
 
     })
   }
-  // loadData() {
-  //   for (let index = 0; index < 22; index++) {
-  //     let obj = {
-  //       name: "Max Verstappen",
-  //       team: "Red Bull Racing",
-  //       country: "Netherlands",
-  //       podiums: 89,
-  //       dateOfBirth: '30/09/1997',
-  //       placeOfBirth: 'Hasselt,Belgium',
-  //       number: 1,
-  //       image: 'https://media.formula1.com/content/dam/fom-website/drivers/2023Drivers/verstappen.jpg.img.2048.medium.jpg/1677069646195.jpg'
-  //     }
-  //     this.firestore.collection('drivers').add(obj);
-
-  //     // 
-  //   }
+ 
 
 
   

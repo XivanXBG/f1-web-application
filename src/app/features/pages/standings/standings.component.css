@@ -7,11 +7,7 @@ h1 {
     justify-items: center;
     align-items: center;
     min-height: calc(100vh - 80px);
-    background-image: url('../../../../assets/f1.jpg');
-
-    background-size: cover;
-    background-position: center;
-
+    background-color: #bcbcbc;
 }
 
 .standings-container {
@@ -28,7 +24,6 @@ h1 {
     background-color: #eaeaeaf1;
     color: #000000;
     width: 500px;
-
 }
 
 h2 {
@@ -45,10 +40,8 @@ ul {
 
 li {
     margin-bottom: 8px;
-
     border-bottom: 1px solid #969696;
     padding-bottom: 5px;
-
 }
 
 .year-selector {
@@ -70,9 +63,8 @@ select {
     background-color: #c62828;
     color: #fff;
 }
-.loading{
-    
+
+.loading {
     font-size: xx-large;
     color: #fff;
-
 }

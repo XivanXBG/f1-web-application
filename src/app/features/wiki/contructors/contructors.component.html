@@ -1,1 +1,38 @@
-<p>contructors works!</p>
+<div class="background">
+    <div class="titleD">
+        <h1 class="title">F1 Constructors</h1>
+    </div>
+
+    <div class="constructor-cards">
+
+        <!-- First Card -->
+        <div *ngFor="let constructor of constructors" class="constructor-card">
+            <div class="team-info">
+                <h3 class="team-name">{{constructor.name}}</h3>
+                <img src="{{constructor.logo}}" alt="Team Logo 1" class="team-logo">
+            </div>
+            <hr class="divider">
+            <div class="drivers">
+                <div class="driver-info">
+                    <h4>{{constructor.drivers[0]}}</h4>
+                </div>
+                <div class="driver-info">
+                    <h4>{{constructor.drivers[1]}}</h4>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="team-details">
+                <p><span class="label">Base:</span> {{constructor.Base}}
+                    <span class="label">Team Chief:</span> {{constructor.chief}}</p>
+                <p><span class="label">Championships:</span> {{constructor.championships}}
+                    <span class="label">Wins:</span> {{constructor.wins}}</p>
+            </div>
+            <hr class="divider">
+            <div class="car-photo">
+                <img src="{{constructor.image}}" alt="Car Photo 1">
+            </div>
+        </div>
+
+
+    </div>
+</div>
