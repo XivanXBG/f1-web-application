@@ -1,124 +1,108 @@
-/* Common styles for both View Mode and Edit Mode */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    background-color: #bcbcbc; /* Background color of the app */
+    padding: 20px;
+    font-size: 24px;
+}
 
-.profile-view,
-.edit-profile-view {
+.profile-view {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    min-height: calc(100vh - 80px);
-    /* Adjust height to fill the whole page except header and footer */
-    background-color: #f1f1f1;
-    /* Set a background color to fill the view */
-    padding: 20px;
-    /* Add padding to space the content */
-    font-size: 20px;
-    /* Increase the font size */
+    background-color: #fff; /* Background color of the profile view */
+    border-top: 5px solid #555; /* Border only on the top */
+    border-right: 5px solid #555; /* Border only on the right */
+    border-bottom: none; /* Remove border at the bottom */
+    border-left: none; /* Remove border at the left */
+    border-radius: 100px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
 }
 
-
-.custom-dropdown {
-    position: relative;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-.small-text {
-    font-size: 14px; /* Customize the font size for the small text */
-    color: #777; /* Customize the color of the small text */
-    margin-top: 5px; /* Add some spacing between the select element and the small text */
-}
-
-.profile-picture img {
-    width: 150px;
-    height: 150px;
+.profile-view .profile-picture img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    margin-bottom: 20px;
-    border: 4px solid #FF6F00;
-    /* Dark Orange border */
+    margin-bottom: 30px;
+    border: 5px solid #FF6F00;
     margin-top: 30px;
 }
-.dropdown-text {
-    margin-top: 5px;
-    font-size: 12px;
-    color: #777;
-  }
-.profile-info {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.profile-info h2 {
-    font-size: 40px;
-    margin-bottom: 10px;
-    color: #FF6F00;
-    /* Dark Orange */
-}
-
-.profile-info p {
-    font-size: 25px;
-    /* Increase font size for profile details */
+.profile-view .profile-info h2 {
+    font-size: 36px;
     margin-bottom: 15px;
 }
 
-
-/* Edit Profile View specific styles */
-
-.edit-profile-view form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    /* Full width form */
+.profile-view .profile-info {
+    font-size: 36px;
 }
 
 .form-group {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+    border-bottom: 2px solid #555;
+    padding-bottom: 20px;
 }
 
-label {
-    font-size: 18px;
-    /* Increase font size for labels */
+.label-with-small-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.label-with-small-text label {
+    font-size: 24px;
     font-weight: bold;
     color: #FF6F00;
-    margin-right: 30px;
-    /* Dark Orange */
+}
+.name-label{
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF6F00;
+    margin-bottom: 15px;
+
 }
 
-input,
+.small-text-centered {
+    text-align: right;
+    font-size: 18px;
+    color: #444;
+    margin-top: 5px;
+}
+
 select {
-    width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    /* Increase font size for inputs and selects */
-    border: 1px solid #FF6F00;
-    /* Dark Orange border */
+    width: 100%;
+    padding: 12px;
+    font-size: 20px;
+    border: 2px solid #FF6F00;
     border-radius: 5px;
 }
 
-
-/* White line at the top */
-
-.profile-info:not(.edit-profile-view) {
-    border-top: 1px solid white;
-    /* Add a white border at the top of the profile info */
-    padding-top: 10px;
-    /* Add padding to separate the content from the line */
+.edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
 }
-
+input{
+    width: 100%;
+    padding: 12px;
+    font-size: 20px;
+    border: 2px solid #FF6F00;
+    border-radius: 5px;
+}
 button {
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 12px 24px;
+    font-size: 20px;
     font-weight: bold;
     background-color: #FF6F00;
-    /* Dark Orange */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -130,73 +114,21 @@ button.cancel-btn {
     background-color: #dc3545;
 }
 
-
-/* Hover styles for buttons */
-
 button:hover {
     background-color: #FFA500;
-    /* Orange (a shade lighter on hover) */
 }
 
-.edit-buttons {
-    display: flex;
-    /* Arrange buttons horizontally */
-    justify-content: space-between;
-    /* Add space between buttons */
-    margin-top: 20px;
-    gap: 30px;
-}
+.edit-profile-view{
+  
+    background-color: #fff; /* Background color of the profile view */
+    border-top: 5px solid #555; /* Border only on the top */
+    border-right: 5px solid #555; /* Border only on the right */
+    border-bottom: none; /* Remove border at the bottom */
+    border-left: none; /* Remove border at the left */
+    border-radius: 100px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px;
 
-
-.selected-option {
-    display: inline-block;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1;
-    display: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.options div {
-    padding: 5px;
-}
-
-.options div:hover {
-    background-color: #f0f0f0;
-}
-
-.form-group {
-    position: relative; /* Add this to allow absolute positioning for small-text */
-    margin-bottom: 20px;
-}
-
-.label-with-small-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.label-with-small-text label {
-    font-size: 18px;
-    /* Increase font size for labels */
-    font-weight: bold;
-    color: #FF6F00;
-    /* Dark Orange */
-}
-
-.small-text-centered {
-    text-align: center;
-    font-size: 14px; /* Customize the font size for the small text */
-    color: #777; /* Customize the color of the small text */
-    margin-right: 30px;
+  
 }

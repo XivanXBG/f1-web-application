@@ -1,10 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { IUser } from '../../../core/interfaces/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { FormGroup, NgForm } from '@angular/forms';
+import { IDriver } from 'src/app/core/interfaces/driver';
+import { IConstructors } from 'src/app/core/interfaces/constructors';
+import { ICurcuit } from 'src/app/core/interfaces/circuit';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { finalize } from 'rxjs/operators';
+import {UpdatePictureService} from "../../../core/services/update-picture-service.service"
+
+
 
 @Component({
   selector: 'app-profile',
@@ -14,36 +23,71 @@ import { FormGroup, NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('profileForm') form: FormGroup;
-
+  drivers: IDriver[];
+  constructors: IConstructors[];
+  circuits: ICurcuit[]
   constructor(
     private afAuth: AngularFireAuth,
-    private router: Router,
+    private storage: AngularFireStorage,
+    private fs: AngularFirestore,
     private authService: AuthService,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private ups: UpdatePictureService
+
+
   ) { }
 
 
-  favoriteDriver: string = ""; // Initialize favoriteDriver with an empty string
-  drivers: Array<string> = [
-    "Driver1",
-    "Driver2"
-  ]
-  constructors: Array<string> = [
-    "Constructor1",
-    "Constructor2"
-  ]
-  circuits: Array<string> = [
-    'Circuit1',
-    'Circuit2'
-  ]
+  favoriteDriver: string;
+  favoriteConstructor: string;
+  favoriteCircuit: string;
   isEditMode = false;
   user: IUser;
 
   ngOnInit(): void {
-    this.updateInfo(); // Fetch user info
-    this.favoriteDriver = this.user?.favoriteDriver || ""; // Set the default value
-  }
+   
+    
+    this.getInfo();
+    this.updateInfo();
+    console.log(this.user.profilePictureUrl);
 
+  }
+  async uploadProfilePicture(event: any): Promise<void> {
+    const user = await this.afAuth.currentUser;
+    if (user && event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const filePath = `profile-pictures/${user.uid}`;
+      const fileRef = this.storage.ref(filePath);
+      const uploadTask = this.storage.upload(filePath, file);
+
+      uploadTask.snapshotChanges().pipe(
+        finalize(async () => {
+          const downloadURL = await fileRef.getDownloadURL().toPromise();
+          // Update the profilePictureUrl in Firestore
+          await this.firestore.updateUserProfilePicture(user.uid, downloadURL);
+          // Update the local user data
+          this.updateInfo();
+          this.ups.triggerHeaderRefresh();
+        })
+      ).subscribe();
+    }
+  }
+  getInfo(): void {
+    this.firestore.getF1Drivers().subscribe(x => {
+
+
+      this.drivers = x as IDriver[];
+    })
+    this.firestore.getF1Constructors().subscribe(x => {
+      this.constructors = x as IConstructors[];
+    })
+    this.firestore.getF1CircuitsData().subscribe(x => {
+      this.circuits = x.map(docChange => {
+        const circuit = docChange.payload.doc.data();
+        return { ...circuit } as ICurcuit;
+      })
+    })
+  }
   toggleEditMode(): void {
     this.isEditMode = !this.isEditMode;
   }
@@ -53,6 +97,7 @@ export class ProfileComponent implements OnInit {
       if (user) {
         this.authService.getUserInfo(user.uid).then((res) => {
           this.user = res as IUser;
+
         });
       }
     });
@@ -73,11 +118,14 @@ export class ProfileComponent implements OnInit {
 
     const userDataToUpdate = {
       name: formValues.firstName || this.user.name,
-      favoriteDriver: formValues.favoriteDriver || "",
-      favoriteConstructor: formValues.favoriteConstructor || "",
-      favoriteCircuit: formValues.favoriteCircuit || ""
+      favoriteDriver: formValues.favoriteDriver || this.user.favoriteDriver,
+      favoriteConstructor: formValues.favoriteConstructor || this.user.favoriteConstructor,
+      favoriteCircuit: formValues.favoriteCircuit || this.user.favoriteCircuit,
+      profilePictureUrl: `gs://f1-web-a.appspot.com/profile-pictures/${this.user.uid}`
       // Add other fields you want to update
     };
+
+
 
     // Update the user's data in Firestore using the Firestore service
     this.firestore.updateUserData(this.user.uid, userDataToUpdate)

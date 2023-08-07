@@ -1,65 +1,78 @@
 <!-- Profile View -->
-<div class="profile-view" *ngIf="!isEditMode">
-    <div class="profile-picture">
-        <img src="./../../../../assets/profile png.png" alt="Profile Photo">
+<div class="profile-container">
+    <div class="profile-view" *ngIf="!isEditMode">
+        <div class="profile-picture">
+            <label for="profilePictureInput">
+                <img [src]="user?.profilePictureUrl || './../../../../assets/profile png.png'" alt="Profile Photo" id="profilePicture">
+            </label>
+            <input type="file" id="profilePictureInput" style="display: none" (change)="uploadProfilePicture($event)">
+        </div>
+        
+        <div *ngIf="user" class="profile-info">
+            <h2> {{ user.name }}</h2>
+            <p><b>Email:</b> {{ user.email }}</p>
+            <p><b>Favorite Driver:</b> {{ user.favoriteDriver }}</p>
+            <p><b>Favorite Constructor:</b> {{ user.favoriteConstructor }}</p>
+            <p><b>Favorite Circuit:</b> {{ user.favoriteCircuit }}</p>
+        </div>
+
+        <div class="editBtn">
+            <button class="editBtn" (click)="toggleEditMode()">Edit Profile</button>
+        </div>
     </div>
-    <div *ngIf="user" class="profile-info">
-        <h2> {{ user.name }}</h2>
-        <p><b>Email:</b> {{ user.email }}</p>
-        <p><b>Favorite Driver:</b> {{ user.favoriteDriver }}</p>
-        <p><b>Favorite Constructor:</b> {{ user.favoriteConstructor }}</p>
-        <p><b>Favorite Circuit:</b> {{ user.favoriteCircuit }}</p>
-    </div>
+    <ng-container *ngIf="user">
+        <div *ngIf="isEditMode" class="edit-profile-view">
+            <form #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
+                <div class="label-with-small-text" class="form-group">
+                    <label class="name-label" for="firstName">First Name</label>
+                    <input size="30px" placeholder="{{ user.name }}" type="text" id="firstName" name="firstName"
+                        [(ngModel)]="firstName" required>
+                </div>
 
-    <div class="editBtn">
-        <button class="editBtn" (click)="toggleEditMode()">Edit Profile</button>
-    </div>
-</div>
+                <div class="form-group">
+                    <div class="label-with-small-text">
+                        <label for="favoriteDriver" class="form-label">Favorite Driver</label>
+                        <div class="small-text-centered">{{ user?.favoriteDriver }}</div>
+                    </div>
+                    <select name="favoriteDriver" id="favoriteDriver" class="form-control" [(ngModel)]="favoriteDriver">
+                        <option *ngFor="let driver of drivers" [value]="driver.name">{{ driver.name }}</option>
+                    </select>
+                </div>
 
-<!-- Edit Profile Form -->
-<div *ngIf="isEditMode" class="edit-profile-view">
-    <form #profileForm="ngForm" (ngSubmit)="saveProfile(profileForm)">
-        <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input size="30px" placeholder="{{ user.name | async }}" type="text" id="firstName" name="firstName"
-                [(ngModel)]="firstName" required>
+                <div class="form-group">
+                    <div class="label-with-small-text">
+                        <label for="favoriteConstructor" class="form-label">Favorite Constructor</label>
+                        <div class="small-text-centered">{{ user?.favoriteConstructor }}</div>
+                    </div>
+                    <select name="favoriteConstructor" id="favoriteConstructor" class="form-control"
+                        [(ngModel)]="favoriteConstructor">
+                        <option *ngFor="let contructor of constructors" [value]="contructor.name">{{ contructor.name }}
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-with-small-text">
+                        <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
+                        <div class="small-text-centered">{{ user?.favoriteCircuit}}</div>
+                    </div>
+                    <select name="favoriteCircuit" id="favoriteCircuit" class="form-control"
+                        [(ngModel)]="favoriteCircuit">
+                        <option *ngFor="let circuit of circuits" [value]="circuit.raceName">{{ circuit.raceName}}
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="edit-buttons">
+                    <button type="submit">Save</button>
+                    <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+                </div>
+            </form>
         </div>
+    </ng-container>
 
-        <div class="form-group">
-            <div class="label-with-small-text">
-                <label for="favoriteDriver" class="form-label">Favorite Driver</label>
-                <div class="small-text-centered">{{ user?.favoriteDriver }}</div>
-            </div>
-            <select name="favoriteDriver" id="favoriteDriver" class="form-control" [(ngModel)]="favoriteDriver">
-                <option *ngFor="let driver of drivers" [value]="driver">{{ driver |async }}</option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <div class="label-with-small-text">
-                <label for="favoriteConstructor" class="form-label">Favorite Constructor</label>
-                <div class="small-text-centered">{{ user?.favoriteConstructor }}</div>
-            </div>
-            <select name="favoriteConstructor" id="favoriteConstructor" class="form-control"
-                [(ngModel)]="favoriteConstructor">
-                <option *ngFor="let circuit of circuits" [value]="circuit">{{ circuit |async }}</option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <div class="label-with-small-text">
-                <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
-                <div class="small-text-centered">{{ user?.favoriteCircuit |async }}</div>
-            </div>
-            <select name="favoriteCircuit" id="favoriteCircuit" class="form-control" [(ngModel)]="favoriteCircuit">
-                <option *ngFor="let contructor of constructors" [value]="contructor">{{ contructor }}</option>
-
-            </select>
-        </div>
-
-        <div class="edit-buttons">
-            <button type="submit">Save</button>
-            <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancel</button>
-        </div>
-    </form>
 </div>

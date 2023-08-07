@@ -1,6 +1,6 @@
 <header>
     <div class="logo">
-        <a href="#">
+        <a routerLink="/" href="#">
             <img src="../../../assets/Color logo - no background.png" alt="Logo">
         </a>
     </div>
@@ -22,7 +22,7 @@
     </div>
     <div class="profile-logout" *ngIf="isLogged">
         <a routerLink="/profile" href="">
-            <img src="../../../assets/profile png.png" alt="Profile Photo">
+            <img [src]="user?.profilePictureUrl || './../../../../assets/profile png.png'" alt="Profile Photo" id="profilePicture">
         </a>
 
 

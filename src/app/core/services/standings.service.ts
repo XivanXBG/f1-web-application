@@ -12,7 +12,7 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class StandingsService implements OnInit {
-  drivers: any[] = [];
+
   constructor(private http: HttpClient,) {
   }
   ngOnInit(): void {
@@ -26,15 +26,5 @@ export class StandingsService implements OnInit {
   getSeasonConstructorStandings(season: string): Observable<any> {
     return this.http.get(`http://ergast.com/api/f1/${season}/constructorStandings.json`)
   }
-  getSchedule(): Observable<any> {
-    return this.http.get(`http://ergast.com/api/f1/current.json `)
-  }
-  getDrivers(): any {
-    return this.http.get('http://ergast.com/api/f1/2023/drivers.json')
-  }
-
-  getCircuit(circuit: string): Observable<any> {
-    return this.http.get(`http://ergast.com/api/f1/${circuit}/circuits`)
-  }
-
+  
 }

@@ -5,7 +5,8 @@ export interface IUser {
     favoriteDriver: string;
     favoriteConstructor: string;
     favoriteCircuit: string;
-    emailVerified?: boolean
+    emailVerified?: boolean;
+    profilePictureUrl?:string,
  
     // Add more properties as needed
   }

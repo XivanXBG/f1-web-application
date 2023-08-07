@@ -20,6 +20,7 @@ export class AuthService {
     favoriteConstructor: '',
     favoriteDriver: '',
     favoriteCircuit: '',
+    profilePictureUrl: "",
   };
   private isLoggedInSubject: BehaviorSubject<boolean>; // Add a BehaviorSubject to track login status changes
   public isLoggedIn$: Observable<boolean>;
@@ -126,7 +127,8 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc<IUser>(`users/${user.uid}`);
 
     const { email, name, favoriteDriver, favoriteConstructor, favoriteCircuit } = userData;
-    const customUserData: IUser = { uid: user.uid, email, name, favoriteDriver, favoriteConstructor, favoriteCircuit, emailVerified: user.emailVerified };
+    const profilePictureUrl="";
+    const customUserData: IUser = { uid: user.uid, email, name, favoriteDriver, favoriteConstructor, favoriteCircuit, emailVerified: user.emailVerified,profilePictureUrl };
 
     return userRef.set(customUserData, { merge: true });
   }

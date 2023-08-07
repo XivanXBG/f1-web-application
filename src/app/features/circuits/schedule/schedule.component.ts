@@ -13,7 +13,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class ScheduleComponent implements OnInit {
   f1Circuits$: any[];
   driversCollection: any[];
-  constructor(private f1Service: StandingsService, private fs: FirestoreService, private firestore: AngularFirestore) { }
+  constructor(private fs: FirestoreService) { }
 
   ngOnInit(): void {
 

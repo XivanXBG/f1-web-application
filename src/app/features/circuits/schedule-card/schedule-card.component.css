@@ -82,8 +82,8 @@
     position: absolute;
     top: -25px;
     right: 10px;
-    background-color: orange;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border-radius: 50%;
     padding: 5px;
     font-size: 14px;
@@ -106,8 +106,8 @@
     position: absolute;
     top: -25px;
     right: 0px; /* Adjust this value to properly center the round on the right */
-    background-color: orange;
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 50%;
     padding: 5px;
     font-size: 14px;

@@ -4,6 +4,7 @@ import { StandingsService } from './standings.service';
 import { Observable } from "rxjs"
 import { ActivatedRoute } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +35,16 @@ export class FirestoreService {
 
     return this.firestore.collection('drivers').valueChanges();
 
+  }
+  async updateUserProfilePicture(userId: string, profilePictureUrl: string): Promise<void> {
+    try {
+      await this.firestore.collection('users').doc(userId).update({ profilePictureUrl });
+
+
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
+      throw error;
+    }
   }
   getF1Constructors() {
 

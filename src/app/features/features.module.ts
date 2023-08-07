@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 
+
 @NgModule({
   declarations: [
     LandingPageComponent,
@@ -44,7 +45,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+
 
   ],
   exports:[

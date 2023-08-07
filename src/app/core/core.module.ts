@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatMenuModule
-  ]
+  ],
+ 
 })
 export class CoreModule { }

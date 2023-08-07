@@ -40,9 +40,8 @@
                             <div class="mb-3">
                                 <label for="favoriteDriver" class="form-label">Favorite Driver</label>
                                 <select class="form-control" id="favoriteDriver" formControlName="favoriteDriver">
-                    <option value="" disabled>Select your favorite driver</option>
-                    <option value="driver1">Driver 1</option>
-                    <option value="driver2">Driver 2</option>
+                    <option value="" disabled>Select your favorite driver (optional)</option>
+                    <option *ngFor="let driver of drivers" [value]="driver.name">{{ driver.name }}</option>
                     <!-- Add more driver options as needed -->
                   </select>
 
@@ -50,9 +49,9 @@
                             <div class="mb-3">
                                 <label for="favoriteConstructor" class="form-label">Favorite Constructor</label>
                                 <select class="form-control" id="favoriteConstructor" formControlName="favoriteConstructor">
-                    <option value="" disabled>Select your favorite constructor</option>
-                    <option value="constructor1">Constructor 1</option>
-                    <option value="constructor2">Constructor 2</option>
+                    <option value="" disabled>Select your favorite constructor (optional)</option>
+                    <option *ngFor="let contructor of constructors" [value]="contructor.name">{{ contructor.name }}
+                    </option>
                     <!-- Add more constructor options as needed -->
                   </select>
 
@@ -61,8 +60,9 @@
                                 <label for="favoriteCircuit" class="form-label">Favorite Circuit</label>
                                 <select class="form-control" id="favoriteCircuit" formControlName="favoriteCircuit">
                     <option value="" disabled>Select your favorite circuit (optional)</option>
-                    <option value="circuit1">Circuit 1</option>
-                    <option value="circuit2">Circuit 2</option>
+                    <option *ngFor="let circuit of circuits" [value]="circuit.raceName">{{ circuit.raceName}}
+                    </option>
+
                     <!-- Add more circuit options as needed -->
                   </select>
                             </div>
@@ -73,21 +73,22 @@
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
                             </div>
-
+                            <div class="row justify-content-center mt-3">
+                                <div class="col-md-6">
+                                    <p class="text-center">Already registered? <a routerLink="/login" href="">Login</a></p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a (click)="loginWithGoogle()" class="icons" class="btn btn-light"><i class="fab fa-google"></i> </a>    
+                                <a (click)="loginWithFacebook()"class="icons" class="btn btn-light"><i class="fab fa-facebook"></i></a>
+                                <a (click)="loginWithGitHub()"class="icons" class="btn btn-light"><i class="fab fa-github"></i></a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-6">
-                <p class="text-center">Already registered? <a routerLink="/login" href="">Login</a></p>
-            </div>
-        </div>
+        
     </div>
-    <div class="d-flex justify-content-center mt-3">
-        <a (click)="loginWithGoogle()" class="icons" class="btn btn-light"><i class="fab fa-google"></i> </a>    
-        <a (click)="loginWithFacebook()"class="icons" class="btn btn-light"><i class="fab fa-facebook"></i></a>
-        <a (click)="loginWithGitHub()"class="icons" class="btn btn-light"><i class="fab fa-github"></i></a>
-    </div>
+   
 </div>
