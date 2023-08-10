@@ -13,6 +13,7 @@ import { AngularFireDatabaseModule} from "@angular/fire/compat/database"
 import { AngularFirestoreModule} from "@angular/fire/compat/firestore"
 import { environmnet } from 'src/environments/environment';
 import { CircuitsModule } from './features/circuits/circuits.module';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -35,7 +36,7 @@ import { CircuitsModule } from './features/circuits/circuits.module';
   
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent, HeaderComponent, FooterComponent],
 })
 export class AppModule { }

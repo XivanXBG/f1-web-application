@@ -143,7 +143,7 @@ export class AuthService {
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail);
   }
-
+  
   async getUserInfo(userId: string) {
     try {
       const firestore = firebase.firestore();
@@ -152,14 +152,14 @@ export class AuthService {
       const doc = await userRef.get();
       if (doc.exists) {
         const userData = doc.data();
-        console.log('User data:', userData);
+        
         return userData;
       } else {
-        console.log('User not found');
+        
         return null;
       }
     } catch (error) {
-      console.error('Error getting user:', error);
+     
       return null;
     }
   }

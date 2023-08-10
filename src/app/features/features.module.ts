@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { StandingsComponent } from './pages/standings/standings.component';
 
@@ -15,6 +15,7 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MatIconModule } from '@angular/material/icon';
+import { PitStopStrategyComponent } from './pages/pit-stop-strategy/pit-stop-strategy.component';
 
 
 
@@ -37,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     VerifyEmailComponent,
     ForgotPasswordComponent,
     NotFoundComponent,
+    PitStopStrategyComponent,
 
 
   ],
@@ -46,6 +48,7 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     ReactiveFormsModule,
     MatIconModule,
+    DatePipe
 
 
   ],

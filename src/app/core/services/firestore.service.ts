@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { StandingsService } from './standings.service';
+
 import { Observable } from "rxjs"
-import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, private f1Service: StandingsService) {
+  constructor(private firestore: AngularFirestore,private datePipe: DatePipe) {
   }
 
   private f1CircuitsCollection: AngularFirestoreCollection<any>;
@@ -35,6 +35,24 @@ export class FirestoreService {
 
     return this.firestore.collection('drivers').valueChanges();
 
+  }
+  getLeaderboard() {
+    
+    return this.firestore.collection('leaderboard').valueChanges()
+  }
+  addDocumentToLeaderboard(playerName: string, score: number) {
+    const leaderboardCollection = this.firestore.collection('leaderboard');
+  
+    const data = {
+      playerName: playerName,
+      score: score,
+      timestamp: this.formatTimestamp(new Date())// Convert to ISO string
+    };
+  
+    return leaderboardCollection.add(data);
+  }
+  formatTimestamp(timestamp: Date): string {
+    return this.datePipe.transform(timestamp, 'yy-MM-dd');
   }
   async updateUserProfilePicture(userId: string, profilePictureUrl: string): Promise<void> {
     try {

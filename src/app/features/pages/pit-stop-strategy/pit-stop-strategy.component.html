@@ -1,0 +1,121 @@
+<div class="pit-stop-strategy">
+    <div *ngIf="currentTire" class="side-panel left-panel">
+        <h2>Tire Information</h2>
+        <p><strong>Tire Type:</strong> {{ currentTire }}</p>
+        <p><strong>Tire Degradation:</strong> {{ baseTireLife }}</p>
+        <p><strong>Tire Speed:</strong> {{ formatTime(tiresInfo[currentTire].lapTime + baseLapTime) }}</p>
+    </div>
+
+    <div class="main-content">
+        <h1>F1 Pit Stop Strategy</h1>
+        <div class="circuit-info">
+            <p>Selected Circuit: {{ selectedCircuit }}</p>
+            <p>Laps: {{ selectedLaps }}</p>
+        </div>
+        <div class="info-button1">
+            <button (click)="showInfo = !showInfo">Info</button>
+        </div>
+
+        <div *ngIf="showInfo" class="info-overlay">
+            <div class="info-content">
+                <h2>Pit Stop Strategy Rules and Information:</h2>
+                <ol>
+                    <li>
+                        <p><strong>Tire Degradation:</strong></p>
+                        <ul>
+                            <li>Each tire type (Soft, Medium, Hard) has a different degradation rate over laps.</li>
+                            <li>Soft: Degrades faster, provides good grip initially.</li>
+                            <li>Medium: Balanced degradation and grip.</li>
+                            <li>Hard: Degrades slowly, may have lower grip compared to softer tires.</li>
+                            <li>Keep in mind: If the tire degradation reaches 0 you get a flat tire and you DNF</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><strong>Pit Stop Timing:</strong></p>
+                        <ul>
+                            <li>Timing of pit stops is crucial for maintaining race position.</li>
+                            <li>Early pit stops may provide fresher tires but require multiple stops.</li>
+                            <li>Late pit stops risk increased tire degradation and potential loss of positions.</li>
+                            <li>Keep in mind that each pit stop can const you form 20-30 second depending on the current
+                                track.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><strong>Strategy Comparison:</strong></p>
+                        <ul>
+                            <li>At the end of the race you can submit your score for the race on the leaderboard where
+                                you can compete with others.</li>
+                            <li>Consider factors like tire degradation, pit stop timing, and competitors' strategies.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><strong>Simulation Outcome:</strong></p>
+                        <ul>
+                            <li>The race simulation shows the estimated outcome based on your strategy.</li>
+                            <li>Pay attention to lap times, tire changes, and overall race position changes.</li>
+                        </ul>
+                    </li>
+
+                </ol>
+                <div class="info-button2">
+                    <button (click)="showInfo = !showInfo">Info</button>
+                </div>
+            </div>
+        </div>
+        <div class="tire-choice">
+            <div class="tire-options">
+                <div class="tire-option" (click)="selectTire('soft')" [class.selected]="this.selectedTire === 'soft'">
+                    <img src="../../../../assets//soft.png" alt="Soft Tire">
+                    <p>Soft</p>
+                </div>
+                <div class="tire-option" (click)="selectTire('medium')"
+                    [class.selected]="this.selectedTire === 'medium'">
+                    <img src="../../../../assets//medium.png" alt="Medium Tire">
+                    <p>Medium</p>
+                </div>
+                <div class="tire-option" (click)="selectTire('hard')" [class.selected]="this.selectedTire === 'hard'">
+                    <img src="../../../../assets//hard.png" alt="Hard Tire">
+                    <p>Hard</p>
+                </div>
+            </div>
+        </div>
+
+
+        <button (click)="simulateStrategy()" [disabled]="!hasRaceEnded&&hasRaceStarted">Start Race</button>
+
+        <div *ngIf="simulationResults" class="race-simulation">
+            <h2>Race Simulation Outcome</h2>
+            <ul #simulationList class="race-simulation" (scroll)="scrollToBottom()">
+                <li *ngFor="let result of simulationResults; let i = index"
+                    [class.dnf]="result.includes('You have DNF-ed')" [ngClass]="{'colored-lap': i % 2 === 0}">
+                    {{ result }}
+                </li>
+            </ul>
+        </div>
+
+        <button class="pitstop" (click)="makePitstop()" [disabled]="!pitStopAvailable">Pit Stop</button>
+
+        <div class="strategy-comparison">
+            <h2>Time strategy Comparison</h2>
+            <p>Total time: {{ formatTime(totalTime)}}</p>
+        </div>
+        <div class="endBtns" *ngIf="hasRaceEnded">
+            <button class="raceEnd" [disabled]="isDNF" (click)="confirmRaceOutcome()">Confirm Score</button>
+            <button class="raceEnd" (click)="resetRace()">Reset Race</button>
+        </div>
+    </div>
+    <div class="side-panel right-panel">
+        <h2>Leaderboard</h2>
+        <ul class="leaderboard-list">
+            <li *ngFor="let result of leaderboard" class="leaderboard-item">
+                <div class="leaderboard-item-details">
+                    <p class="player-name">{{ result.playerName }}:</p>
+                    <p class="score">{{ formatTime(result.score) }}</p>
+                    <p class="timestamp">{{ result.timestamp}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
