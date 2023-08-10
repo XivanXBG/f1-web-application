@@ -54,3 +54,50 @@ h3 {
 .fa-redo-alt {
     margin-right: 5px;
 }
+
+@media (max-width: 1280px) and (max-height: 720px) {
+    .authBlock {
+        padding: 10px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .btnPrimary {
+        padding: 8px 12px;
+    }
+
+}
+
+/* For 1366x900 */
+@media (max-width: 1366px) and (max-height: 900px) {
+    .authBlock {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .btnPrimary {
+        padding: 10px 14px;
+    }
+
+}
+
+/* For 1920x1080 */
+@media (max-width: 1920px) and (max-height: 1080px) {
+    .authBlock {
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    .btnPrimary {
+        padding: 12px 16px;
+    }
+
+}

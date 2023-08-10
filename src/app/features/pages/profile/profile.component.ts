@@ -11,7 +11,7 @@ import { ICurcuit } from 'src/app/core/interfaces/circuit';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { finalize } from 'rxjs/operators';
-import {UpdatePictureService} from "../../../core/services/update-picture-service.service"
+import { UpdatePictureService } from "../../../core/services/update-picture-service.service"
 
 
 
@@ -45,11 +45,11 @@ export class ProfileComponent implements OnInit {
   user: IUser;
 
   ngOnInit(): void {
-   
-    
+
+
     this.getInfo();
     this.updateInfo();
-    console.log(this.user.profilePictureUrl);
+   
 
   }
   async uploadProfilePicture(event: any): Promise<void> {
@@ -97,6 +97,7 @@ export class ProfileComponent implements OnInit {
       if (user) {
         this.authService.getUserInfo(user.uid).then((res) => {
           this.user = res as IUser;
+          console.log(this.user);
 
         });
       }

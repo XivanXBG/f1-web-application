@@ -5,7 +5,6 @@
 
     <div class="constructor-cards">
 
-        <!-- First Card -->
         <div *ngFor="let constructor of constructors" class="constructor-card">
             <div class="team-info">
                 <h3 class="team-name">{{constructor.name}}</h3>
@@ -22,11 +21,22 @@
             </div>
             <hr class="divider">
             <div class="team-details">
-                <p><span class="label">Base:</span> {{constructor.Base}}
-                    <span class="label">Team Chief:</span> {{constructor.chief}}</p>
-                <p><span class="label">Championships:</span> {{constructor.championships}}
-                    <span class="label">Wins:</span> {{constructor.wins}}</p>
+                <p>
+                    <span class="label-start">Base:</span>
+                    <span class="value-start">{{constructor.Base}}</span>
+                    <span class="label-center">Team Chief:</span>
+                    <span class="value-center">{{constructor.chief}}</span>
+                </p>
+                <p>
+                    <span class="label-start">Championships:</span>
+                    <span class="value-start">{{constructor.championships}}</span>
+                    <span class="label-center">Wins:</span>
+                    <span class="value-center">{{constructor.wins}}</span>
+                </p>
             </div>
+            
+            
+
             <hr class="divider">
             <div class="car-photo">
                 <img src="{{constructor.image}}" alt="Car Photo 1">

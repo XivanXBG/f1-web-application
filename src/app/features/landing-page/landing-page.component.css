@@ -2,8 +2,8 @@
   position: relative;
   height: 100vh;
   display: flex;
-  flex-direction: column; /* Change to vertical stacking */
-  justify-content: flex-start; /* Align content to the top */
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   color: #fff;
   text-align: center;
@@ -20,12 +20,11 @@
   background-position: center;
   background-color: black;
   opacity: 1;
-
   z-index: -1;
 }
 
 .content {
-  margin-top: 150px; /* Add some space between the top of the page and the content */
+  margin-top: 150px;
   background-color: #d6d7d8;
   border-radius: 20px;
   z-index: 11;
@@ -37,7 +36,6 @@ h1 {
   font-size: 3rem;
   color: black;
   opacity: 1;
-
 }
 
 .button-container {
@@ -57,11 +55,62 @@ button {
 .primary-button {
   background-color: #007bff;
   opacity: 1;
-
 }
 
 .secondary-button {
   background-color: #6c757d;
   opacity: 1;
+}
 
+/* Breakpoint: 1200px */
+@media (max-width: 1200px) {
+  
+
+  .background-image {
+    opacity: 0.7;
+  }
+
+  .content {
+    margin-top: 100px;
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Breakpoint: 1366px */
+@media (max-width: 1366px) {
+  
+
+  .background-image {
+    opacity: 0.8;
+  }
+
+  .content {
+    margin-top: 80px;
+    opacity: 0.7;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Breakpoint: 1440px */
+@media (max-width: 1440px) {
+  
+  .background-image {
+    opacity: 0.9;
+  }
+
+  .content {
+    margin-top: 60px;
+    opacity: 0.6;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
 }

@@ -1,31 +1,7 @@
-.pit-stop-strategy {
+/* Base styles */
+.background {
     background-color: #bcbcbc;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
-    text-align: center;
-}
-
-.info-button {
-    margin-bottom: 20px;
-}
-
-.info-content {
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px;
+    margin: 0px;
 }
 
 .tire-choice {
@@ -35,50 +11,6 @@
 .tire-options {
     display: flex;
     justify-content: center;
-}
-
-.tire-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.3s, transform 0.3s;
-}
-
-.tire-option img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 5px;
-}
-
-.tire-option p {
-    margin: 0;
-}
-
-.tire-option:hover {
-    border-color: #007bff;
-    transform: scale(1.05);
-}
-
-.tire-option.selected {
-    border-color: #007bff;
-    transform: scale(1.05);
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 label {
@@ -92,51 +24,19 @@ input[type="number"] {
     font-size: 16px;
 }
 
-.race-simulation,
-.strategy-comparison {
-    margin-top: 20px;
-}
-
-.pit-stop-strategy {
-    background-color: #bcbcbc;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.main-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
-    text-align: center;
-    position: relative;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
 .info-button1 {
     margin-bottom: 20px;
     position: relative;
-    /* Add this line */
     z-index: 1;
-    /* Add this line */
 }
+
 .info-button2 {
     margin-bottom: 20px;
     position: relative;
-    /* Add this line */
     z-index: 3;
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    
-    /* Add this line */
 }
 
 .info-overlay {
@@ -146,11 +46,12 @@ input[type="number"] {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent overlay */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
+    height: 500px;
+ 
 }
 
 .info-content {
@@ -158,8 +59,8 @@ input[type="number"] {
     background-color: #fff5b8;
     border: 1px solid #ccc;
     padding: 20px;
-    max-width: 800px;
-    max-height: 700px;
+    max-width: 1000px;
+    
     margin: 0px auto;
     text-align: left;
     z-index: 3;
@@ -173,23 +74,12 @@ input[type="number"] {
 
 .info-content h2 {
     display: block;
-    margin-top: 80px;
+  
 }
 
 .info-content p {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-/* ... previous styles ... */
-
-.tire-choice {
-    margin-bottom: 20px;
-}
-
-.tire-options {
-    display: flex;
-    justify-content: center;
 }
 
 .tire-option {
@@ -220,47 +110,6 @@ input[type="number"] {
 .tire-option.selected {
     border-color: #007bff;
     transform: scale(1.05);
-}
-
-.race-simulation {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.race-simulation h2 {
-    margin-bottom: 10px;
-}
-
-.race-simulation ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.race-simulation li {
-    margin-bottom: 5px;
-}
-
-/* ... (other styles) */
-
-.race-simulation {
-    margin-top: 20px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.race-simulation h2 {
-    margin-bottom: 10px;
-}
-
-.race-simulation ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.race-simulation li {
-    margin-bottom: 5px;
 }
 
 .colored-lap {
@@ -283,8 +132,7 @@ input[type="number"] {
 .race-simulation ul {
     list-style-type: none;
     padding: 0;
-    max-height: 180px;
-    /* Adjust the maximum height as needed */
+    max-height: 70px;
     overflow-y: scroll;
 }
 
@@ -299,10 +147,6 @@ input[type="number"] {
     width: 500px;
 }
 
-.colored-lap {
-    color: #007bff;
-}
-
 .dnf {
     color: red;
     font-size: 30px;
@@ -311,17 +155,12 @@ input[type="number"] {
 .pit-stop-strategy {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* Three equal columns */
     grid-gap: -150px;
-    /* Adjust the gap as needed */
     justify-items: center;
-    /* Center horizontally */
     align-items: center;
-    /* Center vertically */
     padding: 20px;
-    /* Add some padding for spacing */
     box-sizing: border-box;
-    /* Include padding in element sizing */
+    height: 100vh;
 }
 
 .side-panel {
@@ -331,9 +170,7 @@ input[type="number"] {
     background-color: #f8f8f8;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    /* Ensure panels take full width of their container */
     max-width: 300px;
-    /* Adjust the max width as needed */
 }
 
 .main-content {
@@ -343,9 +180,10 @@ input[type="number"] {
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     grid-column: 2;
-
+    text-align: center;
     width: 100%;
     max-width: 1000px;
+    position: relative;
 }
 
 button {
@@ -367,9 +205,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Center vertically */
     margin-top: 20px;
-    /* Add a margin to create a gap */
 }
 
 .raceEnd {
@@ -382,7 +218,6 @@ button:hover {
     color: white;
     transition: background-color 0.3s;
     margin: 0 10px;
-    /* Add a margin between the buttons */
 }
 
 .raceEnd:hover {
@@ -395,58 +230,128 @@ button:hover {
 
 .pitstop {
     background-color: burlywood;
-
 }
+
 .side-panel.right-panel {
     background-color: #f8f8f8;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 300px; /* Adjust the max width as needed */
+    max-width: 300px;
     display: flex;
     flex-direction: column;
-  }
-  
-  .side-panel.right-panel h2 {
+}
+
+.side-panel.right-panel h2 {
     font-size: 20px;
     margin-bottom: 10px;
-  }
-  
-  .leaderboard-list {
+}
+
+.leaderboard-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .leaderboard-item {
+}
+
+.leaderboard-item {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-  }
-  
-  .leaderboard-item-details {
+}
+
+.leaderboard-item-details {
     display: flex;
     align-items: center;
-  }
-  
-  .leaderboard-item p {
-    font-size: 14px; /* Adjust the font size as needed */
+}
+
+.leaderboard-item p {
+    font-size: 14px;
     margin: 0;
-    margin-right: 10px; /* Adjust the margin as needed */
-  }
-  
-  .leaderboard-item .player-name {
+    margin-right: 10px;
+}
+
+.leaderboard-item .player-name {
     font-weight: bold;
-  }
-  
-  .leaderboard-item .score {
+}
+
+.leaderboard-item .score {
     color: #007bff;
-  }
-  
-  .leaderboard-item .timestamp {
+}
+
+.leaderboard-item .timestamp {
     font-size: 12px;
     color: #777;
-  }
-  
-  
+}
+
+/* Responsive adjustments */
+
+/* For screens larger than 1200x720 and smaller than 1366x900 */
+@media screen and (min-width: 1200px) and (min-height: 720px) and (max-width: 1366px) and (max-height: 900px) {
+    .main-content {
+        padding: 0px;
+        border-radius: 0px;
+        height: 600px;
+        overflow-y: scroll;
+    }
+    
+    .race-simulation ul {
+        max-height: 80px;
+        width: 300px;
+        overflow-y: scroll;
+    }
+    .race-simulation ul li {
+       padding: 10px;
+        width: 300px;
+       
+    }
+    .info-content {
+        height: 500px;
+        overflow-y: scroll;
+    }
+    .info-overlay{
+        height: 500px;
+        overflow-y: scroll;
+    }
+    
+}
+
+/* For screens larger than 1366x900 and smaller than 1920x1080 */
+@media screen and (min-width: 1367px) and (max-width: 1919px) and (min-height: 900px) and (max-height: 1079px) {
+    .main-content {
+        padding: 0px;
+        border-radius: 0px;
+        height: 600px;
+        overflow-y: scroll;
+    }
+    
+    .race-simulation ul {
+        max-height: 90px;
+        width: 300px;
+        overflow-y: scroll;
+    }
+    .race-simulation ul li {
+       padding: 10px;
+        width: 300px;
+        overflow-y: scroll;
+    }
+    .info-content {
+        height: 500px;
+        overflow-y: scroll;
+    }
+    .info-overlay{
+        height: 500px;
+        overflow-y: scroll;
+    }
+}
+
+/* For screens larger than 1366x900 and smaller than 1920x900 */
+@media screen and (min-width: 1367px) and (max-width: 1920px) and (min-height: 900px) and (max-height: 900px) {
+    .pit-stop-strategy {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: -100px;
+    }
+    .main-content {
+        margin-bottom: 40px;
+    }
+}

@@ -7,18 +7,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 10px;
+    padding: 20px;
     margin-top: 0px;
+
+
 }
 
 .constructor-card {
     width: calc(50% - 20px);
-    /* 50% width with some margin for spacing */
     border: 2px solid #aaa;
     border-radius: 30px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+margin-bottom: 20px;
     background-color: white;
 }
 
@@ -28,12 +29,8 @@
 }
 
 
-/* ... rest of the CSS styles ... */
 
-.team-details p {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .team-name {
     margin: 0;
@@ -49,11 +46,7 @@
     border-radius: 50%;
 }
 
-.divider {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 10px 0;
-}
+
 
 .drivers {
     display: flex;
@@ -87,9 +80,7 @@
     margin-bottom: 20px;
 }
 
-.team-details {
-    text-align: center;
-}
+
 
 .label {
     font-weight: bold;
@@ -106,112 +97,56 @@
 
 .team-details p {
     display: flex;
-    justify-content: space-between;
-}
-
-.team-details p span {
-    flex: 1;
-}
-
-.team-details p span.label {
-    margin-right: 5px;
-}
-
-.team-details p .team-chief-value {
-    flex: 1;
-    text-align: right;
-}
-
-.team-details p .wins-value {
-    flex: 1;
-    text-align: right;
-}
-
-.team-details::before {
-    display: inline-block;
-    height: 100%;
-    width: 1px;
-    background-color: #ccc;
-    margin-right: 10px;
-}
-
-.constructor-card {
-    /* ... other styles ... */
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.team-details p {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    /* Add this line to vertically center the labels and values */
-    margin: 5px 0;
-}
-
-
-/* ... rest of the CSS styles ... */
-
-.team-details p {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-}
-
-.team-details p span {
-    flex: 1;
-}
-
-.team-details p span.label {
-    margin-right: 5px;
-    text-align: left;
-    /* Set back to left-align the first set of labels */
-}
-
-.team-details p .team-chief-value,
-.team-details p .wins-value,
-.team-details p .championships-value {
-    text-align: right;
-}
-
-.constructor-card {
-    /* ... other styles ... */
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.constructor-card {
-    /* ... other styles ... */
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.team-details {
-    /* Add this line to align team details to the top */
-    margin-top: auto;
-}
-
-.team-details p {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
     gap: 10px;
 }
 
 .team-details p span {
     flex: 1;
+    display: flex;
+    align-items: center;
 }
 
-.team-details p span.label {
-    margin-right: 5px;
+.label-start,
+.label-center {
+    font-weight: bold;
+}
+
+
+.label-start,
+.value-start {
     text-align: left;
+
 }
 
-.team-details p .team-chief-value,
-.team-details p .wins-value,
-.team-details p .championships-value {
-    text-align: right;
+.label-center,
+.value-center {
+    text-align: center;
+}
+@media (max-width: 1366px) and (max-height: 900px) {
+    .constructor-card {
+        width: calc(50% - 10px);
+    }
+
+    .title {
+        font-size: 32px;
+    }
+}
+
+/* For 1920x1080 */
+@media (max-width: 1920px) and (max-height: 1080px) {
+    .constructor-card {
+        width: calc(50% - 20px);
+    }
+}
+
+/* For 1280x720 */
+@media (max-width: 1280px) and (max-height: 720px) {
+    .constructor-card {
+        width: calc(100% - 20px);
+    }
+
+    .constructor-cards {
+        justify-content: center;
+    }
 }

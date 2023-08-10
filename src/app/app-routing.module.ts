@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { StandingsComponent } from './features/pages/standings/standings.component';
-
-
 import { LoginComponent } from './features/pages/login/login.component';
 import { RegisterComponent } from './features/pages/register/register.component';
 import { ProfileComponent } from './features/pages/profile/profile.component';
@@ -20,10 +18,6 @@ const routes: Routes = [
     path: "",
     component: LandingPageComponent
   },
-  {
-    path: "standings",
-    component: StandingsComponent
-  },
 
   {
     path: 'schedule',
@@ -33,7 +27,10 @@ const routes: Routes = [
     path: 'wiki',
     loadChildren: () => import('./features/wiki/wiki.module').then((m) => m.WikiModule),
   },
-
+  {
+    path: "standings",
+    component: StandingsComponent
+  },
   {
     path: "login",
     component: LoginComponent,
@@ -51,12 +48,34 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthPublicGuard] },
-  { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [AuthGuard] },
-  { path: 'not-found', component: NotFoundComponent },
-  { path: 'auth-callback', component: LandingPageComponent },
-  { path: 'pit-stop-game', component: PitStopStrategyComponent,canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '/not-found' },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    canActivate: [AuthPublicGuard]
+  },
+  {
+    path: 'verify-email-address',
+    component: VerifyEmailComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'auth-callback',
+    component: LandingPageComponent
+  },
+  {
+    path: 'pit-stop-game',
+    component: PitStopStrategyComponent, canActivate: [AuthGuard]
+  },
+
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found'
+  },
 
 ];
 

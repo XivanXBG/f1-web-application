@@ -11,8 +11,7 @@ export class UpdatePictureService {
   headerRefresh$ = this.headerRefreshSource.asObservable();
 
   triggerHeaderRefresh(): void {
-   
-    
+  
     this.headerRefreshSource.next();
   }
 }

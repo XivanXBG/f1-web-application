@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { IUser } from 'src/app/core/interfaces/user';
 import { Router } from '@angular/router';
@@ -18,52 +18,61 @@ export class RegisterComponent implements OnInit {
   errorMessage: string | null = null;
   drivers: IDriver[];
   constructors: IConstructors[];
-  circuits: ICurcuit[]
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router,private firestore:FirestoreService) { }
+  circuits: ICurcuit[];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private firestore: FirestoreService
+  ) {}
 
   ngOnInit(): void {
     this.getInfo();
+    this.initializeForm();
+  }
+
+  initializeForm(): void {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required], // Remove the custom validator here
+      confirmPassword: ['', Validators.required],
       favoriteDriver: [''],
       favoriteConstructor: [''],
       favoriteCircuit: ['']
-    }, { validator: this.passwordConfirmationValidator }); // Add the custom validator here
+    }, { validator: this.passwordConfirmationValidator });
   }
+
   getInfo(): void {
-    this.firestore.getF1Drivers().subscribe(x => { 
-      
-      
-      this.drivers = x as IDriver[];
-    })
-    this.firestore.getF1Constructors().subscribe(x => {
-      this.constructors = x as IConstructors[];
-    })
-    this.firestore.getF1CircuitsData().subscribe(x => {
-      this.circuits = x.map(docChange => {
-        const circuit = docChange.payload.doc.data();
-        return { ...circuit } as ICurcuit;
-      })
+    this.firestore.getF1Drivers().subscribe(drivers => {
+      this.drivers = drivers;
+    });
+
+    this.firestore.getF1Constructors().subscribe(constructors => {
+      this.constructors = constructors;
+    });
+
+    this.firestore.getF1CircuitsData().subscribe(circuits => {
+      this.circuits = circuits.map(docChange => docChange.payload.doc.data() as ICurcuit);
       console.log(this.circuits);
-    })
+    });
   }
-  loginWithGoogle(){
-    this.authService.googleSingIn()
-  }
-  loginWithGitHub(){
-    this.authService.loginWithGitHub()
 
+  loginWithGoogle(): void {
+    this.authService.googleSingIn();
   }
-  loginWithFacebook(){
-    this.authService.loginWithFacebook()
 
+  loginWithGitHub(): void {
+    this.authService.loginWithGitHub();
   }
+
+  loginWithFacebook(): void {
+    this.authService.loginWithFacebook();
+  }
+
   onSubmit(): void {
-    this.errorMessage = null; // Clear previous error message
-   
+    this.errorMessage = null;
 
     const userData: IUser = {
       email: this.registerForm.get('email')?.value,
@@ -77,14 +86,13 @@ export class RegisterComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/']);
       })
-      .catch((error) => {
-        // Handle Sign Up errors here
+      .catch(error => {
         console.error(error);
-        this.errorMessage = error; // Display error message to the user
+        this.errorMessage = error;
       });
   }
 
-  passwordConfirmationValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+  passwordConfirmationValidator: ValidatorFn = formGroup => {
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
 

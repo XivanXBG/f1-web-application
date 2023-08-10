@@ -2,12 +2,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
-
-
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +9,7 @@ export class StandingsService implements OnInit {
 
   constructor(private http: HttpClient,) {
   }
-  ngOnInit(): void {
-
-
-  }
-
+  ngOnInit(): void {}
   getSeasonDriverStandings(season: string): Observable<any> {
     return this.http.get(`https://ergast.com/api/f1/${season}/driverStandings.json`)
   }

@@ -4,7 +4,10 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { CircuitDetailsComponent } from './circuit-details/circuit-details.component';
 
 const routes: Routes = [
-  { path: '', component: ScheduleComponent },
+  {
+    path: '',
+    component: ScheduleComponent
+  },
   {
     path: 'details/:id',
     component: CircuitDetailsComponent

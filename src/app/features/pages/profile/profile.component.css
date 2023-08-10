@@ -3,24 +3,24 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 80px);
-    background-color: #bcbcbc; /* Background color of the app */
+    background-color: #bcbcbc;
     padding: 20px;
     font-size: 24px;
 }
 
-.profile-view {
+.profile-view,
+.edit-profile-view {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    background-color: #fff; /* Background color of the profile view */
-    border-top: 5px solid #555; /* Border only on the top */
-    border-right: 5px solid #555; /* Border only on the right */
-    border-bottom: none; /* Remove border at the bottom */
-    border-left: none; /* Remove border at the left */
+    background-color: #fff;
+    border-top: 5px solid #555;
+    border-right: 5px solid #555;
+    border-bottom: none;
+    border-left: none;
     border-radius: 100px;
     padding: 40px;
-    width: 100%;
     max-width: 1200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px;
@@ -35,13 +35,10 @@
     margin-top: 30px;
 }
 
-.profile-view .profile-info h2 {
-    font-size: 36px;
-    margin-bottom: 15px;
-}
-
+.profile-view .profile-info h2,
 .profile-view .profile-info {
     font-size: 36px;
+    margin-bottom: 15px;
 }
 
 .form-group {
@@ -58,17 +55,12 @@
     margin-bottom: 15px;
 }
 
-.label-with-small-text label {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FF6F00;
-}
-.name-label{
+.label-with-small-text label,
+.name-label {
     font-size: 24px;
     font-weight: bold;
     color: #FF6F00;
     margin-bottom: 15px;
-
 }
 
 .small-text-centered {
@@ -78,7 +70,8 @@
     margin-top: 5px;
 }
 
-select {
+select,
+input {
     width: 100%;
     padding: 12px;
     font-size: 20px;
@@ -91,13 +84,7 @@ select {
     justify-content: space-between;
     margin-top: 30px;
 }
-input{
-    width: 100%;
-    padding: 12px;
-    font-size: 20px;
-    border: 2px solid #FF6F00;
-    border-radius: 5px;
-}
+
 button {
     padding: 12px 24px;
     font-size: 20px;
@@ -118,17 +105,61 @@ button:hover {
     background-color: #FFA500;
 }
 
-.edit-profile-view{
-  
-    background-color: #fff; /* Background color of the profile view */
-    border-top: 5px solid #555; /* Border only on the top */
-    border-right: 5px solid #555; /* Border only on the right */
-    border-bottom: none; /* Remove border at the bottom */
-    border-left: none; /* Remove border at the left */
-    border-radius: 100px;
-    padding: 40px;
-    width: 100%;
-    max-width: 1200px;
+@media (max-width: 1280px) and (max-height: 720px) {
+    .profile-container {
+        padding: 10px;
+    }
 
-  
+    .profile-view,
+    .edit-profile-view {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .profile-view .profile-picture img {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Additional adjustments for other elements as needed */
+}
+
+/* For 1366x900 */
+@media (max-width: 1366px) and (max-height: 900px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-view,
+    .edit-profile-view {
+        padding: 30px;
+        margin: 15px;
+    }
+
+    .profile-view .profile-picture img {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Additional adjustments for other elements as needed */
+}
+
+/* For 1920x1080 */
+@media (max-width: 1920px) and (max-height: 1080px) {
+    .profile-container {
+        padding: 20px;
+    }
+
+    .profile-view,
+    .edit-profile-view {
+        padding: 40px;
+        margin: 20px;
+    }
+
+    .profile-view .profile-picture img {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Additional adjustments for other elements as needed */
 }

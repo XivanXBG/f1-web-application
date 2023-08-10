@@ -14,16 +14,18 @@
         </ul>
     </nav>
 
-    <div class="login-register" *ngIf="!isLogged">
-        <a routerLink="/login" href="">Login</a>
-        <a routerLink="/register" href="">Register</a>
-    </div>
-    <div class="profile-logout" *ngIf="isLogged">
-        <a routerLink="/profile" href="">
-            <img [src]="user?.profilePictureUrl || './../../../../assets/profile png.png'" alt="Profile Photo" id="profilePicture">
-        </a>
-
-
-        <a class="logout" (click)="logoutHandler()" href="/">Logout</a>
-    </div>
+    <ng-container *ngIf="!isLogged; else loggedSection">
+        <div class="login-register">
+            <a routerLink="/login" href="#">Login</a>
+            <a routerLink="/register" href="#">Register</a>
+        </div>
+    </ng-container>
+    <ng-template #loggedSection>
+        <div class="profile-logout">
+            <a routerLink="/profile" href="#">
+                <img [src]="user?.profilePictureUrl || './../../../../assets/profile png.png'" alt="Profile Photo" id="profilePicture">
+            </a>
+            <a class="logout" (click)="logoutHandler()" href="/">Logout</a>
+        </div>
+    </ng-template>
 </header>

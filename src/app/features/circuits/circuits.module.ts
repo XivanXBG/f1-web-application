@@ -17,8 +17,7 @@ import { FeaturesModule } from '../features.module';
   imports: [
     CommonModule,
     CircuitsRoutingModule,
-    FeaturesModule
-    
+    FeaturesModule   
   ]
 })
 export class CircuitsModule { }

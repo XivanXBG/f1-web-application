@@ -33,7 +33,7 @@ export class ScheduleCardComponent implements OnInit {
     return 'Upcoming';
   }
   redirectToDetailsPage(circuitId: string) {
-    const detailsPageUrl = `details/${circuitId}`;
+    const detailsPageUrl = `schedule/details/${circuitId}`;
     this.router.navigateByUrl(detailsPageUrl);
   }
   

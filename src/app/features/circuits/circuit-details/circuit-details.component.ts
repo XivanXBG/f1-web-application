@@ -19,6 +19,8 @@ export class CircuitDetailsComponent{
    
     this.f1Service.getF1CircuitDataById(circuitId).subscribe(circuit=>{
       this.circuit = circuit as ICurcuit
+
+      
     });
 
     setTimeout(()=>{},1000)

@@ -36,8 +36,8 @@
         </div>
     </div>
 </div>
-<div *ngIf="standingsD&&standingsC" class="main">
+<ng-container class="main" *ngIf="standingsD&&standingsC">
     <span class="loading" *ngIf="!isLoaded">
         Standings are loading!
     </span>
-</div>
+</ng-container>

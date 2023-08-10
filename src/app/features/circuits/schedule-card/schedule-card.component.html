@@ -1,6 +1,6 @@
 <div class="outer-container">
-  <div class="top-left circuit-badge">Round {{circuit.round}}</div> <!-- Add top-left round here -->
-  <div class="top-right circuit-badge" [ngStyle]="{'background-color': hasRaceEnded(circuit) === 'Finished' ? '#32CD32' : '#F28C28'}">{{ hasRaceEnded(circuit)}}</div> <!-- The existing top-right round -->
+  <div class="circuit-badge top-left">Round {{ circuit.round }}</div>
+  <div class="circuit-badge top-right" [ngStyle]="{'background-color': hasRaceEnded(circuit) === 'Finished' ? '#32CD32' : '#F28C28'}">{{ hasRaceEnded(circuit) }}</div>
   <div class="circuit-card-2" [class.hovered]="isHovered" (click)="redirectToDetailsPage(circuit.idFire)">
     <div class="top-section">
       <div class="circuit-image-wrapper">

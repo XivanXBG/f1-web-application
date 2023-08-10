@@ -1,22 +1,18 @@
-/* Apply CSS flexbox layout to center the form vertically and horizontally */
-
 .login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Set the height of the container to fill the available space */
-    height: calc(100vh - 100px);
-
-}
-
-.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #bcbcbc;
+    height: calc(100vh - 100px);
+
 }
+
+
 
 .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,9 +45,31 @@
     text-align: center;
     margin-top: 1rem;
 }
+
 i {
-   padding: 15px;
-   border: #f8f9fa;
-   border-radius: 30px;
-   background-color: lightblue;
+    padding: 15px;
+    border: #f8f9fa;
+    border-radius: 30px;
+    background-color: lightblue;
+}
+@media (min-width: 360px) and (min-height: 640px) {
+    .login-container {
+        padding: 22.64%;
+        
+        
+    }
+}
+
+@media (min-width: 1366px) and (min-height: 768px) {
+    .login-container {
+        padding: 11.98%;
+        
+    }
+}
+
+@media (min-width: 1920px) and (min-height: 1080px) {
+    .login-container {
+        padding: 7.35%;
+        
+    }
 }

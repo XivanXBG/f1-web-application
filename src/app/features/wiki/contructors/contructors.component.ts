@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IConstructors } from 'src/app/core/interfaces/constructors';
-import { IDriver } from 'src/app/core/interfaces/driver';
+
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 
 @Component({
@@ -18,8 +18,7 @@ export class ContructorsComponent implements OnInit {
   ngOnInit(): void {
     this.fs.getF1Constructors().subscribe(contructors=>{
       this.constructors = contructors as IConstructors[];
-      console.log(this.constructors);
-      
+
     })
   }
 }

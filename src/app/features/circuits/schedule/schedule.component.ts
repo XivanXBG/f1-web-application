@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StandingsService } from 'src/app/core/services/standings.service';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
-
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-
 
 @Component({
   selector: 'app-schedule',
@@ -29,8 +25,5 @@ export class ScheduleComponent implements OnInit {
 
     })
   }
- 
 
-
-  
 }
