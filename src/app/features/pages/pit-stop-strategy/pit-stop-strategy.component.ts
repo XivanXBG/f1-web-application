@@ -140,12 +140,14 @@ export class PitStopStrategyComponent implements OnInit {
   }
 
   makePitstop() {
-    if (this.hasRaceStarted) {
+    if (this.hasRaceStarted && this.selectedTire!="") {
       this.currentTire = this.selectedTire;
       this.totalTime += 23;
       this.simulationResults.push(`Changed to tires: ${this.selectedTire}`);
       this.restartRace();
-    } else {
+    } else if(this.selectedTire=="") {
+      this.simulationResults.push("Select a tire!");
+    }else if(!this.hasRaceStarted){
       this.simulationResults.push("Race hasn't started yet!");
     }
   }
