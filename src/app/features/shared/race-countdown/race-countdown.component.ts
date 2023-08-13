@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StandingsService } from 'src/app/core/services/standings.service';
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { ICurcuit } from 'src/app/core/interfaces/circuit';
@@ -11,7 +10,7 @@ import { ICurcuit } from 'src/app/core/interfaces/circuit';
 })
 export class RaceCountdownComponent implements OnInit {
 
-  constructor(private f1Service: StandingsService, private router: Router, private firestoreService: FirestoreService) { }
+  constructor(private router: Router, private firestoreService: FirestoreService) { }
 
   circuit!: ICurcuit;
   index: string = "14";

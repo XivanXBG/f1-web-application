@@ -29,7 +29,7 @@ html, body {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  object-fit: cover; /* Ensure the image fits the container */
+  object-fit: cover; 
 }
 
 .card-text {
@@ -38,7 +38,7 @@ html, body {
   padding: 5px;
 }
 
-/* Media Queries */
+
 @media (max-width: 1280px) and (max-height: 720px) {
   .cards-container {
     height: calc(100vh - 80px);
@@ -54,7 +54,7 @@ html, body {
   }
   
   .center-image {
-    height: 400px; /* Adjusted image height for this resolution */
+    height: 400px;
   }
 }
 

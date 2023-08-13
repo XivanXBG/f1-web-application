@@ -70,7 +70,6 @@ h3 {
 
 }
 
-/* For 1366x900 */
 @media (max-width: 1366px) and (max-height: 900px) {
     .authBlock {
         padding: 15px;
@@ -86,7 +85,6 @@ h3 {
 
 }
 
-/* For 1920x1080 */
 @media (max-width: 1920px) and (max-height: 1080px) {
     .authBlock {
         padding: 20px;

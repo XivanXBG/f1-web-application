@@ -29,19 +29,21 @@ export class LoginComponent implements OnInit {
   // Function to handle Google login
   loginWithGoogle() {
     this.authService.googleSingIn();
+    this.router.navigate(['/']);
   }
 
   // Function to handle GitHub login
   loginWithGitHub() {
     this.authService.loginWithGitHub();
+    this.router.navigate(['/']);
   }
 
-  // Function to handle Facebook login
-  loginWithFacebook() {
-    this.authService.loginWithFacebook();
+  // Function to handle Yahoo login
+  loginWithYahoo(): void {
+    this.authService.yahooSignIn();
+    this.router.navigate(['/']);
   }
 
-  // Function to handle form submission
   onSubmit(): void {
     this.loginError = null; // Clear previous login errors
     const email = this.loginForm.get('email')?.value;

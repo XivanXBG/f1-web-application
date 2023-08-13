@@ -8,24 +8,21 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
   templateUrl: './circuit-details.component.html',
   styleUrls: ['./circuit-details.component.css']
 })
-export class CircuitDetailsComponent{
+export class CircuitDetailsComponent {
   circuit: ICurcuit
-  constructor(private route:ActivatedRoute, private f1Service: FirestoreService) {
+  constructor(private route: ActivatedRoute, private f1Service: FirestoreService) {
 
   }
   ngOnInit(): void {
 
     const circuitId = this.route.snapshot.paramMap.get('id');
-   
-    this.f1Service.getF1CircuitDataById(circuitId).subscribe(circuit=>{
+
+    this.f1Service.getF1CircuitDataById(circuitId).subscribe(circuit => {
       this.circuit = circuit as ICurcuit
 
-      
+
     });
 
-    setTimeout(()=>{},1000)
-
-    
   }
-  
+
 }

@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 export class FirestoreService {
   private f1CircuitsCollection: AngularFirestoreCollection<any>;
 
-  constructor(private firestore: AngularFirestore, private datePipe: DatePipe) {}
+  constructor(private firestore: AngularFirestore, private datePipe: DatePipe) { }
 
   updateUserData(userId: string, data: any): Promise<void> {
     const userRef = this.firestore.collection('users').doc(userId);
@@ -32,11 +32,9 @@ export class FirestoreService {
   getF1Drivers(): Observable<any[]> {
     return this.firestore.collection('drivers').valueChanges();
   }
-
-  getLeaderboard(): Observable<any[]> {
-    return this.firestore.collection('leaderboard').valueChanges();
+  getStandings(year: string) {
+    return this.firestore.collection('standings').doc(year).valueChanges();
   }
-
   addDocumentToLeaderboard(playerName: string, score: number) {
     const leaderboardCollection = this.firestore.collection('leaderboard');
     const data = {
@@ -46,6 +44,10 @@ export class FirestoreService {
     };
     return leaderboardCollection.add(data);
   }
+  getLeaderboard(): Observable<any[]> {
+    return this.firestore.collection('leaderboard').valueChanges();
+  }
+
 
   formatTimestamp(timestamp: Date): string {
     return this.datePipe.transform(timestamp, 'yy-MM-dd');

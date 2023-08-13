@@ -12,10 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard {
   constructor(public authService: AuthService, public router: Router) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
+  canActivate(): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
     if (this.authService.isLoggedIn !== true) {
       window.alert('Access Denied, Login is Required to Access This Page!');
       this.router.navigate(['login']);

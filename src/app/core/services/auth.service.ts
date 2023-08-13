@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject, Observable } from "rxjs";
-import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "@angular/fire/auth"
+import { GoogleAuthProvider, GithubAuthProvider} from "@angular/fire/auth"
 
 @Injectable({
   providedIn: 'root'
@@ -46,25 +46,36 @@ export class AuthService {
 
   googleSingIn() {
     return this.afAuth.signInWithPopup(new GoogleAuthProvider).then((res) => {
-      this.data.email = res.user.email;
-      this.router.navigate(['/']);
-      this.SetUserData(res.user, this.data)
+      if(res.additionalUserInfo.isNewUser){
+        this.data.email = res.user.email;
+        this.router.navigate(['/']);
+        this.SetUserData(res.user, this.data)
+      }
+      
+      
     })
   }
+ 
+  yahooSignIn() {
+  const yahooAuthProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
-  loginWithFacebook() {
-    return this.afAuth.signInWithPopup(new FacebookAuthProvider).then((res) => {
+  return this.afAuth.signInWithPopup(yahooAuthProvider).then((res) => {
+    if(res.additionalUserInfo.isNewUser){
       this.data.email = res.user.email;
       this.router.navigate(['/']);
       this.SetUserData(res.user, this.data)
-    })
-  }
+    }
+  });
+}
+
 
   loginWithGitHub() {
     return this.afAuth.signInWithPopup(new GithubAuthProvider).then((res) => {
-      this.data.email = res.user.email;
-      this.router.navigate(['/']);
-      this.SetUserData(res.user, this.data)
+      if(res.additionalUserInfo.isNewUser){
+        this.data.email = res.user.email;
+        this.router.navigate(['/']);
+        this.SetUserData(res.user, this.data)
+      }
     })
   }
 

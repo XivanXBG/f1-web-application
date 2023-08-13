@@ -9,14 +9,11 @@ import { Observable } from 'rxjs';
 export class AuthPublicGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.authService.isLoggedIn) {
-      return true; // Allow access to the public route
+      return true;
     } else {
-      this.router.navigate(['/']); // Redirect authenticated users to the home page or any other route
+      this.router.navigate(['/']);
       return false;
     }
   }

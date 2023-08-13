@@ -11,7 +11,7 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
   styleUrls: ['./pit-stop-strategy.component.css']
 })
 export class PitStopStrategyComponent implements OnInit {
-  // Variables
+
   @ViewChild('simulationList', { read: ElementRef }) simulationList!: ElementRef;
   selectedCircuit: string = 'F1 Paddock Fantasy';
   selectedLaps: number = 15;
@@ -27,34 +27,31 @@ export class PitStopStrategyComponent implements OnInit {
   hasRaceEnded: boolean = false;
   baseLapTime = 60;
   baseTireLife = 100;
-  
-  
-  
+
+
+
   tiresInfo = {
     soft: { degradationRate: 13, lapTime: 5 },
     medium: { degradationRate: 10, lapTime: 12 },
     hard: { degradationRate: 8, lapTime: 18 }
   };
 
-  // Constructor
   constructor(
     private firestore: FirestoreService,
     private authService: AuthService,
     private afAuth: AngularFireAuth
   ) { }
 
-  // Initialization
   ngOnInit(): void {
     this.firestore.getRaceDetailsByRound("13").subscribe(raceDetails => {
       raceDetails.map(docChange => {
         this.getUserInfo();
         this.loadLeaderboard();
-        
+
       });
     });
   }
 
-  // Methods
   selectTire(tireType: string) {
     this.selectedTire = tireType;
     if (!this.hasRaceStarted) {
@@ -95,7 +92,7 @@ export class PitStopStrategyComponent implements OnInit {
     const totalSeconds = totalTime % 60;
     return `${totalMinutes} mins ${totalSeconds} secs`;
   }
-  
+
   degradaration(tire: string) {
     if (this.baseTireLife <= 0) {
       this.simulationResults.push("You have DNF-ed");
@@ -174,13 +171,14 @@ export class PitStopStrategyComponent implements OnInit {
         return +a.score - +b.score;
       });
       this.leaderboard = this.leaderboard.slice(0, 5);
-      console.log(this.leaderboard);
+      
     });
   }
 
   confirmRaceOutcome() {
     this.hasRaceEnded = false;
     this.hasRaceStarted = false;
+    this.isDNF = false;
     this.restartRace();
 
     this.firestore.addDocumentToLeaderboard(`${this.user.name}`, this.totalTime)
@@ -193,6 +191,8 @@ export class PitStopStrategyComponent implements OnInit {
   }
 
   restartRace() {
+    this.selectedTire = "";
+    this.isDNF = false
     this.baseTireLife = 100;
     this.tiresInfo = {
       soft: { degradationRate: 13, lapTime: 5 },

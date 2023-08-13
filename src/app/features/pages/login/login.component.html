@@ -30,7 +30,6 @@
                                 </div>
                             </div>
 
-                            <!-- Custom error message -->
                             <div *ngIf="loginError" class="error-text">
                                 <small class="text-danger">{{ loginError }}</small>
                             </div>
@@ -40,18 +39,16 @@
                             </div>
                         </form>
 
-                        <!-- Link to register page -->
                         <div class="text-center">
                             <a routerLink="/register">New user? Register here</a>
                         </div>
 
-                        <!-- Link to forgot password page -->
                         <div class="text-center">
                             <a routerLink="/forgot-password">Forgot your password?</a>
                         </div>
                         <div class="d-flex justify-content-center mt-3">
                             <a (click)="loginWithGoogle()" class="icons" class="btn btn-light"><i class="fab fa-google"></i> </a>    
-                            <a (click)="loginWithFacebook()"class="icons" class="btn btn-light"><i class="fab fa-facebook"></i></a>
+                            <a (click)="loginWithYahoo()"class="icons" class="btn btn-light"><i class="fab fa-yahoo"></i></a>
                             <a (click)="loginWithGitHub()"class="icons" class="btn btn-light"><i class="fab fa-github"></i></a>
                         </div>
                     </div>

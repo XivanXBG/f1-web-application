@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthGuard } from './guard.guard';
 
 describe('AuthGuard', () => {
@@ -7,15 +6,14 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthGuard], // Provide the AuthGuard
+      providers: [AuthGuard],
     });
 
-    authGuard = TestBed.inject(AuthGuard); // Inject the AuthGuard
+    authGuard = TestBed.inject(AuthGuard);
   });
 
   it('should be created', () => {
-    expect(authGuard).toBeTruthy(); // Verify that the AuthGuard is created
+    expect(authGuard).toBeTruthy();
   });
 
-  // Add more tests for your AuthGuard as needed
 });

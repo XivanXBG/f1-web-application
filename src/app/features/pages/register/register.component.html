@@ -42,7 +42,6 @@
                                 <select class="form-control" id="favoriteDriver" formControlName="favoriteDriver">
                     <option value="" disabled>Select your favorite driver (optional)</option>
                     <option *ngFor="let driver of drivers" [value]="driver.name">{{ driver.name }}</option>
-                    <!-- Add more driver options as needed -->
                   </select>
 
                             </div>
@@ -52,7 +51,7 @@
                     <option value="" disabled>Select your favorite constructor (optional)</option>
                     <option *ngFor="let contructor of constructors" [value]="contructor.name">{{ contructor.name }}
                     </option>
-                    <!-- Add more constructor options as needed -->
+
                   </select>
 
                             </div>
@@ -63,7 +62,6 @@
                     <option *ngFor="let circuit of circuits" [value]="circuit.raceName">{{ circuit.raceName}}
                     </option>
 
-                    <!-- Add more circuit options as needed -->
                   </select>
                             </div>
                             <div *ngIf="errorMessage" class="error-text">
@@ -80,7 +78,7 @@
                             </div>
                             <div class="d-flex justify-content-center mt-3">
                                 <a (click)="loginWithGoogle()" class="icons" class="btn btn-light"><i class="fab fa-google"></i> </a>    
-                                <a (click)="loginWithFacebook()"class="icons" class="btn btn-light"><i class="fab fa-facebook"></i></a>
+                                <a (click)="loginWithYahoo()"class="icons" class="btn btn-light"><i class="fab fa-yahoo"></i></a>
                                 <a (click)="loginWithGitHub()"class="icons" class="btn btn-light"><i class="fab fa-github"></i></a>
                             </div>
                         </form>

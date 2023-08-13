@@ -12,7 +12,5 @@ export interface ICurcuit {
     recordHolder:string,
     round:string,
     time:string
- 
-    // Add more properties as needed
   }
   

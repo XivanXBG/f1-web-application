@@ -7,7 +7,6 @@ export interface IUser {
     favoriteCircuit: string;
     emailVerified?: boolean;
     profilePictureUrl?:string,
- 
-    // Add more properties as needed
+
   }
   

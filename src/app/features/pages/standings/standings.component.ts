@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { StandingsService } from 'src/app/core/services/standings.service';
+import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
+
 
 @Component({
   selector: 'app-standings',
@@ -8,12 +9,13 @@ import { StandingsService } from 'src/app/core/services/standings.service';
 })
 export class StandingsComponent implements OnInit {
   public years: number[] = [];
-  public isLoaded: boolean = false;
-  standingsD!: any[];
-  standingsC!: any[];
+  indexD = 1;
+  indexC = 1;
+  constructors = [];
+  drivers = [];
   selectedYear = 2023;
 
-  constructor(private f1Service: StandingsService, private cdr: ChangeDetectorRef) {
+  constructor(private firestore: FirestoreService) {
     const currentYear = new Date().getFullYear();
     for (let year = currentYear; year >= 1950; year--) {
       this.years.push(year);
@@ -21,41 +23,32 @@ export class StandingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadData(this.selectedYear);
   }
 
   onChange(newValue: any): void {
     this.selectedYear = newValue;
-    this.isLoaded = false;
+    this.loadData(this.selectedYear)
+  }
+  getKeyValue(input: any) {
+    
+    const key = Object.keys(input)[0];;  
+    const value: string = Object.values(input)[0] as string;
 
-    this.f1Service.getSeasonDriverStandings(this.selectedYear.toString()).subscribe(d => {
-      this.standingsD = d['MRData']['StandingsTable'].StandingsLists[0].DriverStandings;
-    });
-    this.f1Service.getSeasonConstructorStandings(this.selectedYear.toString()).subscribe(d => {
-      this.standingsC = d['MRData']['StandingsTable'].StandingsLists[0].ConstructorStandings;
-    });
+    return {key,value}
 
-    setTimeout(() => {
-      this.isLoaded = true;
-      this.cdr.detectChanges();
-    }, 3500);
   }
 
-  private loadData(): void {
-    this.isLoaded = false;
 
-    this.f1Service.getSeasonDriverStandings(this.selectedYear.toString()).subscribe(d => {
-      this.standingsD = d['MRData']['StandingsTable'].StandingsLists[0].DriverStandings;
-      this.isLoaded = true;
-    });
-    this.f1Service.getSeasonConstructorStandings(this.selectedYear.toString()).subscribe(d => {
-      this.standingsC = d['MRData']['StandingsTable'].StandingsLists[0].ConstructorStandings;
-      this.isLoaded = true;
-    });
 
-    setTimeout(() => {
-      this.isLoaded = true;
-      this.cdr.detectChanges();
-    }, 1000);
+  private loadData(year: number): void {
+    this.firestore.getStandings(year.toString()).subscribe(x => {
+      this.drivers = x['drivers'];
+      this.constructors = x['contructors'];
+
+    });
+    this.indexC = 1;
+    this.indexD = 1;
   }
+
 }

@@ -81,7 +81,6 @@ nav {
     }
 }
 
-/* Tablet Styles (1366px) */
 @media screen and (max-width: 1366px) {
     .nav-links {
         gap: 15px;
@@ -93,7 +92,6 @@ nav {
     }
 }
 
-/* Desktop Styles (1440px) */
 @media screen and (max-width: 1440px) {
     .logo img {
         max-height: 40px;

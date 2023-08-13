@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
 import { IUser } from '../../../core/interfaces/user';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { IDriver } from 'src/app/core/interfaces/driver';
 import { IConstructors } from 'src/app/core/interfaces/constructors';
 import { ICurcuit } from 'src/app/core/interfaces/circuit';
@@ -29,7 +28,6 @@ export class ProfileComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
     private storage: AngularFireStorage,
-    private fs: AngularFirestore,
     private authService: AuthService,
     private firestore: FirestoreService,
     private ups: UpdatePictureService
@@ -63,9 +61,7 @@ export class ProfileComponent implements OnInit {
       uploadTask.snapshotChanges().pipe(
         finalize(async () => {
           const downloadURL = await fileRef.getDownloadURL().toPromise();
-          // Update the profilePictureUrl in Firestore
           await this.firestore.updateUserProfilePicture(user.uid, downloadURL);
-          // Update the local user data
           this.updateInfo();
           this.ups.triggerHeaderRefresh();
         })
@@ -74,8 +70,6 @@ export class ProfileComponent implements OnInit {
   }
   getInfo(): void {
     this.firestore.getF1Drivers().subscribe(x => {
-
-
       this.drivers = x as IDriver[];
     })
     this.firestore.getF1Constructors().subscribe(x => {
@@ -96,9 +90,9 @@ export class ProfileComponent implements OnInit {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.authService.getUserInfo(user.uid).then((res) => {
+     
           this.user = res as IUser;
-          console.log(this.user);
-
+          
         });
       }
     });
@@ -122,8 +116,7 @@ export class ProfileComponent implements OnInit {
       favoriteDriver: formValues.favoriteDriver || this.user.favoriteDriver,
       favoriteConstructor: formValues.favoriteConstructor || this.user.favoriteConstructor,
       favoriteCircuit: formValues.favoriteCircuit || this.user.favoriteCircuit,
-      profilePictureUrl: `gs://f1-web-a.appspot.com/profile-pictures/${this.user.uid}`
-      // Add other fields you want to update
+
     };
 
 

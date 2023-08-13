@@ -1,24 +1,21 @@
-<div *ngIf="standingsD&&standingsC" class="main">
+<div class="main">
     <div class="year-selector">
 
         <select [ngModel]="selectedYear" (ngModelChange)="onChange($event)" name="selYear" id="year">
             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
 
         </select>
-
-
-
-
     </div>
 
     <div class="standings-container">
 
         <div class="standings-table">
             <h2>Driver's</h2>
-            <ng-container *ngIf="isLoaded">
-                <ul *ngFor="let standingD of standingsD">
-                    <li>{{standingD.position}}. {{standingD.Driver.givenName}} {{standingD.Driver.familyName}} -
-                        {{standingD.Constructors[0].name}} - {{standingD.points}} points </li>
+            <ng-container >
+                <ul *ngFor="let driver of drivers; let i = index">
+                    <li>
+                       {{i+1}}. {{getKeyValue(driver).key}}: {{getKeyValue(driver).value}} points. 
+                    </li>
                 </ul>
             </ng-container>
 
@@ -26,9 +23,10 @@
 
         <div class="standings-table">
             <h2>Constructor's</h2>
-            <ng-container *ngIf="isLoaded">
-                <ul *ngFor="let standingC of standingsC">
-                    <li>{{standingC.position}}. {{standingC.Constructor.name}} - {{standingC.points}} points
+            <ng-container >
+                <ul *ngFor="let constructor of constructors; let i = index">
+                    <li>
+                       {{i+1}}. {{getKeyValue(constructor).key}}: {{getKeyValue(constructor).value}} points. 
                     </li>
                 </ul>
             </ng-container>
@@ -36,8 +34,3 @@
         </div>
     </div>
 </div>
-<ng-container class="main" *ngIf="standingsD&&standingsC">
-    <span class="loading" *ngIf="!isLoaded">
-        Standings are loading!
-    </span>
-</ng-container>

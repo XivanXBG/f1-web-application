@@ -55,20 +55,23 @@ export class RegisterComponent implements OnInit {
 
     this.firestore.getF1CircuitsData().subscribe(circuits => {
       this.circuits = circuits.map(docChange => docChange.payload.doc.data() as ICurcuit);
-      console.log(this.circuits);
+     
     });
   }
 
   loginWithGoogle(): void {
     this.authService.googleSingIn();
+    this.router.navigate(['/']);
   }
 
   loginWithGitHub(): void {
     this.authService.loginWithGitHub();
+    this.router.navigate(['/']);
   }
 
-  loginWithFacebook(): void {
-    this.authService.loginWithFacebook();
+  loginWithYahoo(): void {
+    this.authService.yahooSignIn();
+    this.router.navigate(['/']);
   }
 
   onSubmit(): void {

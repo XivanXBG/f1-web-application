@@ -1,21 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AuthPublicGuard } from './public-guard.guard'; // Make sure the path to your guard is correct
+import { AuthPublicGuard } from './public-guard.guard';
 
 describe('AuthPublicGuard', () => {
-  let authPublicGuard: AuthPublicGuard; // Create a variable to hold the instance of AuthPublicGuard
+  let authPublicGuard: AuthPublicGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthPublicGuard], // Provide the AuthPublicGuard
+      providers: [AuthPublicGuard],
     });
 
-    authPublicGuard = TestBed.inject(AuthPublicGuard); // Inject the AuthPublicGuard
+    authPublicGuard = TestBed.inject(AuthPublicGuard);
   });
 
   it('should be created', () => {
-    expect(authPublicGuard).toBeTruthy(); // Verify that the AuthPublicGuard is created
+    expect(authPublicGuard).toBeTruthy();
   });
-
-  // Add more tests for AuthPublicGuard as needed
 });

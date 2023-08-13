@@ -1,4 +1,4 @@
-/* Base styles */
+
 .background {
     background-color: #bcbcbc;
     margin: 0px;
@@ -238,7 +238,7 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
 }
@@ -284,9 +284,7 @@ button:hover {
     color: #777;
 }
 
-/* Responsive adjustments */
 
-/* For screens larger than 1200x720 and smaller than 1366x900 */
 @media screen and (min-width: 1200px) and (min-height: 720px) and (max-width: 1366px) and (max-height: 900px) {
     .main-content {
         padding: 0px;
@@ -316,7 +314,6 @@ button:hover {
     
 }
 
-/* For screens larger than 1366x900 and smaller than 1920x1080 */
 @media screen and (min-width: 1367px) and (max-width: 1919px) and (min-height: 900px) and (max-height: 1079px) {
     .main-content {
         padding: 0px;
@@ -345,7 +342,6 @@ button:hover {
     }
 }
 
-/* For screens larger than 1366x900 and smaller than 1920x900 */
 @media screen and (min-width: 1367px) and (max-width: 1920px) and (min-height: 900px) and (max-height: 900px) {
     .pit-stop-strategy {
         grid-template-columns: repeat(3, 1fr);
